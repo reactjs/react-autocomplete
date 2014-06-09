@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
 var Combobox = require('../lib/combobox');
-var Option = require('../lib/option');
 var states = require('./states');
 
 var App = React.createClass({
@@ -32,7 +31,7 @@ var App = React.createClass({
 
   render: function() {
     var options = this.state.states.map(function(state) {
-      return Option({value: state.id}, state.name);
+      return <div value={state.id}>{state.name}</div>;
     });
 
     return (
@@ -46,6 +45,7 @@ var App = React.createClass({
         >
           {options}
         </Combobox>
+        <div><button>something else to focus</button></div>
       </div>
     );
   }
