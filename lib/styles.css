@@ -10,3 +10,7 @@
   display: block;
 }
 
+.rf-combobox-focused-option {
+  background: hsl(200, 50%, 50%);
+}
+

@@ -7,7 +7,10 @@ var states = require('./states');
 var App = React.createClass({
 
   getInitialState: function() {
-    return {states: states};
+    return {
+      states: states,
+      selectedStateId: 'UT'
+    };
   },
 
   filterStates: function(userInput) {
@@ -20,15 +23,27 @@ var App = React.createClass({
     })});
   },
 
+  handleStateSelect: function(value, combobox) {
+    this.setState({
+      selectedStateId: value,
+      states: states
+    });
+  },
+
   render: function() {
     var options = this.state.states.map(function(state) {
-      return <Option value={state.id}>{state.name}</Option>;
+      return Option({value: state.id}, state.name);
     });
 
     return (
       <div>
         <h1>React Combobox</h1>
-        <Combobox onInput={this.filterStates}>
+        <p>Selected State: {this.state.selectedStateId}</p>
+        <Combobox
+          onInput={this.filterStates}
+          onSelect={this.handleStateSelect}
+          value={this.state.selectedStateId}
+        >
           {options}
         </Combobox>
       </div>
