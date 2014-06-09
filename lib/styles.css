@@ -1,0 +1,12 @@
+.rf-combobox {
+  display: inline-block;
+}
+
+.rf-combobox-list {
+  display: none;
+}
+
+.rf-combobox-is-visible .rf-combobox-list {
+  display: block;
+}
+
