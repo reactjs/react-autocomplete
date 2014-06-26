@@ -12,6 +12,11 @@ var App = React.createClass({
     };
   },
 
+  handleInput: function(userInput) {
+    this.setState({selectedStateId: null});
+    this.filterStates(userInput);
+  },
+
   filterStates: function(userInput) {
     if (userInput === '')
       return this.setState({states: states});
@@ -33,13 +38,12 @@ var App = React.createClass({
     var options = this.state.states.map(function(state) {
       return <div value={state.id}>{state.name}</div>;
     });
-
     return (
       <div>
         <h1>React Combobox</h1>
         <p>Selected State: {this.state.selectedStateId}</p>
         <Combobox
-          onInput={this.filterStates}
+          onInput={this.handleInput}
           onSelect={this.handleStateSelect}
           value={this.state.selectedStateId}
         >

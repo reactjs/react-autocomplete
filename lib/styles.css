@@ -1,5 +1,6 @@
 .rf-combobox {
   display: inline-block;
+  position: relative;
 }
 
 .rf-combobox-list {
@@ -12,5 +13,20 @@
 
 .rf-combobox-focused-option {
   background: hsl(200, 50%, 50%);
+}
+
+.rf-combobox-input {
+  padding-right: 20px;
+}
+
+.rf-combobox-button {
+  position: absolute;
+  right: 8px;
+  cursor: default;
+}
+
+
+.rf-combobox-button:active {
+  color: #4095BF;
 }
 
