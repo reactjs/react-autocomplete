@@ -36,7 +36,7 @@ var App = React.createClass({
 
   render: function() {
     var options = this.state.states.map(function(state) {
-      return <div value={state.id}>{state.name}</div>;
+      return <div key={state.id} value={state.id}>{state.name}</div>;
     });
     return (
       <div>
