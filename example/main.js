@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 var Combobox = require('../lib/combobox');
+var ComboboxOption = require('../lib/option');
 var states = require('./states');
 
 var App = React.createClass({
@@ -20,7 +21,6 @@ var App = React.createClass({
   filterStates: function(userInput) {
     if (userInput === '')
       return this.setState({states: states});
-
     var filter = new RegExp('^'+userInput, 'i');
     this.setState({states: states.filter(function(state) {
       return filter.test(state.name) || filter.test(state.id);
@@ -34,10 +34,18 @@ var App = React.createClass({
     });
   },
 
-  render: function() {
-    var options = this.state.states.map(function(state) {
-      return <div key={state.id} value={state.id}>{state.name}</div>;
+  renderComboboxOptions: function() {
+    return this.state.states.map(function(state) {
+      return (
+        <ComboboxOption
+          key={state.id}
+          value={state.id}
+        >{state.name}</ComboboxOption>
+      );
     });
+  },
+
+  render: function() {
     return (
       <div>
         <h1>React Combobox</h1>
@@ -47,7 +55,7 @@ var App = React.createClass({
           onSelect={this.handleStateSelect}
           value={this.state.selectedStateId}
         >
-          {options}
+          {this.renderComboboxOptions()}
         </Combobox>
         <div><button>something else to focus</button></div>
       </div>
