@@ -22,7 +22,9 @@ var comboboxinItUp = (
 
   // Just like <select><option/></select>, this component is a
   // composite component. This gives you complete control over
-  // What is displayed inside the <Option>s.
+  // What is displayed inside the <Option>s as well as allowing
+  // you to render whatever you want inside, like a "no results"
+  // message that isn't interactive like the <Options> are.
 
   // Start with the <Combobox/> and give it some handlers.
 

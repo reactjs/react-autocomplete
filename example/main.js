@@ -46,6 +46,9 @@ var App = React.createClass({
   },
 
   render: function() {
+    var menuContent = this.state.states.length ?
+      this.renderComboboxOptions() :
+      <div style={{padding: '8px'}} aria-live="polite">No matches</div>;
     return (
       <div>
         <h1>React Combobox</h1>
@@ -55,7 +58,7 @@ var App = React.createClass({
           onSelect={this.handleStateSelect}
           value={this.state.selectedStateId}
         >
-          {this.renderComboboxOptions()}
+          {menuContent}
         </Combobox>
         <div><button>something else to focus</button></div>
       </div>
