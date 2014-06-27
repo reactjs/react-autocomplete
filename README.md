@@ -8,6 +8,11 @@ Installation
 
 `npm install react-autocomplete`
 
+Demo
+----
+
+http://rpflorence.github.io/react-autocomplete/example/
+
 Usage
 -----
 
@@ -63,11 +68,6 @@ var comboboxinItUp = (
 
 This is not realistic code, check out the examples directory for a real
 implementation.
-
-Demo
-----
-
-http://rpflorence.github.io/react-autocomplete/example/
 
   [wai-aria]:http://www.w3.org/TR/wai-aria/roles#combobox
   [react]:http://facebook.github.io/react/
