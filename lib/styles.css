@@ -21,7 +21,7 @@
   box-sizing: border-box;
 }
 
-.rf-combobox-is-visible .rf-combobox-list {
+.rf-combobox-is-open .rf-combobox-list {
   display: block;
 }
 
