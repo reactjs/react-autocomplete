@@ -8,6 +8,12 @@ Installation
 
 `npm install react-autocomplete`
 
+WIP
+---
+
+This is not production ready, but I welcome use-cases opened in the
+issues :)
+
 Demo
 ----
 
