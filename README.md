@@ -17,7 +17,7 @@ issues :)
 Demo
 ----
 
-http://rpflorence.github.io/react-autocomplete/example/
+http://rackt.github.io/react-autocomplete/example/
 
 Usage
 -----
