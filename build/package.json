@@ -1,0 +1,29 @@
+{
+  "name": "react-autocomplete",
+  "version": "0.0.2",
+  "description": "Accessible, extensible, Autocomplete for React.js",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rackt/react-autocomplete.git"
+  },
+  "homepage": "https://github.com/rackt/react-autocomplete",
+  "bugs": "https://github.com/rackt/react-autocomplete/issues",
+  "directories": {
+    "example": "examples"
+  },
+  "authors": [
+    "Ryan Florence <rpflorence@gmail.com>"
+  ],
+  "license": "MIT",
+  "tags": [
+    "react",
+    "autocomplete",
+    "combobox",
+    "a11y"
+  ],
+  "keywords": [],
+  "dependencies": {
+    "dom-scroll-into-view": "1.0.1"
+  }
+}
