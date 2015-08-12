@@ -1,2 +1,2 @@
-examples/build
-node_modules
+examples/**/*-bundle.js
+node_modules/

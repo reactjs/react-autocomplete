@@ -1,4 +1,5 @@
-example
-script
-webpack.config.js
-
+**/.*
+**/__tests__
+examples
+CONTRIBUTING.md
+bower.json

@@ -1,0 +1,24 @@
+{
+  "name": "react-autocomplete",
+  "version": "0.0.2",
+  "homepage": "",
+  "authors": [
+    "Ryan Florence <rpflorence@gmail.com>"
+  ],
+  "description": "react component",
+  "main": "dist/react-autocomplete.js",
+  "keywords": [
+    ""
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "**/__tests__",
+    "build",
+    "examples",
+    "lib",
+    "node_modules",
+    "package.json",
+    "CONTRIBUTIN.md"
+  ]
+}
