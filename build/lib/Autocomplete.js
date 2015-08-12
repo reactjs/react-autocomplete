@@ -26,7 +26,7 @@ var Autocomplete = React.createClass({
       onChange: function onChange() {},
       onSelect: function onSelect(value, item) {},
       renderMenu: function renderMenu(items, value, style) {
-        return React.createElement('div', { style: _extends({ style: style }, this.menuStyle), children: items });
+        return React.createElement('div', { style: _extends({}, style, this.menuStyle), children: items });
       },
       shouldItemRender: function shouldItemRender() {
         return true;
@@ -93,7 +93,6 @@ var Autocomplete = React.createClass({
   handleChange: function handleChange(event) {
     var _this = this;
 
-    console.log(event.target.value);
     this._performAutoCompleteOnKeyUp = true;
     this.setState({
       value: event.target.value

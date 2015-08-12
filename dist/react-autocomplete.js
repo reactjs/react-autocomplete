@@ -64,7 +64,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var _extends = Object.assign || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }return target;
+	};
 	
 	var React = __webpack_require__(2);
 	var scrollIntoView = __webpack_require__(3);
@@ -90,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      onChange: function onChange() {},
 	      onSelect: function onSelect(value, item) {},
 	      renderMenu: function renderMenu(items, value, style) {
-	        return React.createElement('div', { style: _extends({ style: style }, this.menuStyle), children: items });
+	        return React.createElement('div', { style: _extends({}, style, this.menuStyle), children: items });
 	      },
 	      shouldItemRender: function shouldItemRender() {
 	        return true;
@@ -157,7 +165,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  handleChange: function handleChange(event) {
 	    var _this = this;
 	
-	    console.log(event.target.value);
 	    this._performAutoCompleteOnKeyUp = true;
 	    this.setState({
 	      value: event.target.value
@@ -375,35 +382,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	        state: this.state
 	      });
 	    }
-	    return React.createElement(
-	      'div',
-	      { style: { display: 'inline-block' } },
-	      React.createElement('input', _extends({}, this.props.inputProps, {
-	        role: 'combobox',
-	        'aria-autocomplete': 'both',
-	        'aria-label': this.getActiveItemValue(),
-	        ref: 'input',
-	        onFocus: this.handleInputFocus,
-	        onBlur: this.handleInputBlur,
-	        onChange: function (event) {
-	          return _this7.handleChange(event);
-	        },
-	        onKeyDown: function (event) {
-	          return _this7.handleKeyDown(event);
-	        },
-	        onKeyUp: function (event) {
-	          return _this7.handleKeyUp(event);
-	        },
-	        onClick: this.handleInputClick,
-	        value: this.state.value
-	      })),
-	      this.state.isOpen && this.renderMenu(),
-	      this.props.debug && React.createElement(
-	        'pre',
-	        { style: { marginLeft: 300 } },
-	        JSON.stringify(_debugStates.slice(_debugStates.length - 5, _debugStates.length), null, 2)
-	      )
-	    );
+	    return React.createElement('div', { style: { display: 'inline-block' } }, React.createElement('input', _extends({}, this.props.inputProps, {
+	      role: 'combobox',
+	      'aria-autocomplete': 'both',
+	      'aria-label': this.getActiveItemValue(),
+	      ref: 'input',
+	      onFocus: this.handleInputFocus,
+	      onBlur: this.handleInputBlur,
+	      onChange: function onChange(event) {
+	        return _this7.handleChange(event);
+	      },
+	      onKeyDown: function onKeyDown(event) {
+	        return _this7.handleKeyDown(event);
+	      },
+	      onKeyUp: function onKeyUp(event) {
+	        return _this7.handleKeyUp(event);
+	      },
+	      onClick: this.handleInputClick,
+	      value: this.state.value
+	    })), this.state.isOpen && this.renderMenu(), this.props.debug && React.createElement('pre', { style: { marginLeft: 300 } }, JSON.stringify(_debugStates.slice(_debugStates.length - 5, _debugStates.length), null, 2)));
 	  }
 	});
 	
