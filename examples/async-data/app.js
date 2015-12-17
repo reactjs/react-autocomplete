@@ -6,6 +6,7 @@ let App = React.createClass({
 
   getInitialState () {
     return {
+      value: '',
       unitedStates: getStates(),
       loading: false
     }
@@ -27,16 +28,17 @@ let App = React.createClass({
           labelText="Choose a state from the US"
           inputProps={{name: "US state"}}
           ref="autocomplete"
+          value={this.state.value}
           items={this.state.unitedStates}
           getItemValue={(item) => item.name}
           onSelect={(value, item) => {
             // set the menu to only the selected item
-            this.setState({ unitedStates: [ item ] })
+            this.setState({ value, unitedStates: [ item ] })
             // or you could reset it to a default list again
             // this.setState({ unitedStates: getStates() })
           }}
           onChange={(event, value) => {
-            this.setState({loading: true})
+            this.setState({ value, loading: true })
             fakeRequest(value, (items) => {
               this.setState({ unitedStates: items, loading: false })
             })
