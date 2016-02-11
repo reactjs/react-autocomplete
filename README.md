@@ -3,7 +3,7 @@ React Autocomplete
 
 Accessible, extensible, Autocomplete for React.js.
 
-Docs coming soon, for now just look at the `propTypes` and examples :)
+Docs coming soon, for now just look at the `propTypes` and [examples](http://rackt.github.io/react-autocomplete/) :)
 
 Trying to settle on the right API, and then focus hard on accessibility,
 there are a few missing bits right now.
