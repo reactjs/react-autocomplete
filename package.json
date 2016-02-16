@@ -22,7 +22,8 @@
   "license": "MIT",
   "devDependencies": {
     "rackt-cli": "^0.4.0",
-    "react": "^0.14.0"
+    "react": "^0.14.0",
+    "mocha": "~2.4.5"
   },
   "tags": [
     "react",
