@@ -13,7 +13,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo 'lol'",
+    "test": "mocha --compilers js:babel-core/register 'lib/__tests__/Autocomplete-test.js'",
     "start": "rackt server"
   },
   "authors": [
