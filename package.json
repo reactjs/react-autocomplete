@@ -13,7 +13,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo 'lol'",
+    "test": "mocha --compilers js:babel-core/register 'lib/__tests__/Autocomplete-test.js'",
     "start": "rackt server"
   },
   "authors": [
@@ -21,8 +21,10 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "babel": "^5.5.8",
     "rackt-cli": "^0.4.0",
-    "react": "^0.14.0"
+    "react": "^0.14.0",
+    "mocha": "~2.4.5"
   },
   "tags": [
     "react",
