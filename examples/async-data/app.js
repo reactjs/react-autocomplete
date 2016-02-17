@@ -24,6 +24,7 @@ let App = React.createClass({
         </p>
 
         <Autocomplete
+          labelText="Choose a state fromm the US"
           ref="autocomplete"
           items={this.state.unitedStates}
           getItemValue={(item) => item.name}
