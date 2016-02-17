@@ -34,6 +34,7 @@
   ],
   "keywords": [],
   "dependencies": {
-    "dom-scroll-into-view": "1.0.1"
+    "dom-scroll-into-view": "1.0.1",
+    "lodash": "^4.5.0"
   }
 }
