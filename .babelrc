@@ -1,4 +1,7 @@
 {
-  "presets": ["es2015", "stage-0", "react"],
-  "ignore": false
+  "env": {
+    "test": {
+      "presets": ["es2015", "stage-0", "react"]
+    }
+  }
 }

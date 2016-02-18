@@ -13,7 +13,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register 'lib/__tests__/Autocomplete-test.js'",
+    "test": "BABEL_ENV=test mocha --compilers js:babel-register 'lib/__tests__/Autocomplete-test.js'",
     "start": "rackt server"
   },
   "authors": [
