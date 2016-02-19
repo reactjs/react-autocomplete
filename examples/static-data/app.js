@@ -1,5 +1,5 @@
 import React from 'react'
-import { getStates, matchStateToTerm, sortStates, styles } from '../utils'
+import { getStates, matchStateToTerm, sortStates, styles } from '../../lib/utils'
 import Autocomplete from '../../lib/index'
 
 let App = React.createClass({
