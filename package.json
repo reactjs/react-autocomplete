@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "BABEL_ENV=test mocha --require './lib/__tests__/.setup.js' --compilers js:babel-register './lib/__tests__/Autocomplete-test.js'",
-    "coverage": "BABEL_ENV=test node_modules/.bin/babel-node node_modules/isparta/bin/isparta cover --report text node_modules/mocha/bin/_mocha -- --reporter dot --require './lib/__tests__/.setup.js' './lib/__tests__/Autocomplete-test.js'",
+    "coverage": "BABEL_ENV=test node_modules/.bin/babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot --require './lib/__tests__/.setup.js' './lib/__tests__/Autocomplete-test.js'",
     "start": "rackt server"
   },
   "authors": [
