@@ -15,4 +15,13 @@ Stuff we need help with:
   pretty lean, on purpose, apps should style this however they'd like)
 - tests (eventually)
 
+# Tests!
 
+Run them:
+`npm test`
+
+Write them:
+`lib/__tests__/Autocomplete-test.js`
+
+Check your work:
+`npm run coverage`
