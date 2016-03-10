@@ -3,6 +3,7 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
+var lodash = require('lodash');
 var scrollIntoView = require('dom-scroll-into-view');
 
 var _debugStates = [];
@@ -17,12 +18,14 @@ var Autocomplete = React.createClass({
     shouldItemRender: React.PropTypes.func,
     renderItem: React.PropTypes.func.isRequired,
     menuStyle: React.PropTypes.object,
-    inputProps: React.PropTypes.object
+    inputProps: React.PropTypes.object,
+    labelText: React.PropTypes.string
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
       inputProps: {},
+      labelText: '',
       onChange: function onChange() {},
       onSelect: function onSelect(value, item) {},
       renderMenu: function renderMenu(items, value, style) {
@@ -53,6 +56,7 @@ var Autocomplete = React.createClass({
   },
 
   componentWillMount: function componentWillMount() {
+    this.id = lodash.uniqueId('autocomplete-');
     this._ignoreBlur = false;
     this._performAutoCompleteOnUpdate = false;
     this._performAutoCompleteOnKeyUp = false;
@@ -109,7 +113,7 @@ var Autocomplete = React.createClass({
   },
 
   keyDownHandlers: {
-    ArrowDown: function ArrowDown() {
+    ArrowDown: function ArrowDown(event) {
       event.preventDefault();
       var highlightedIndex = this.state.highlightedIndex;
 
@@ -137,16 +141,17 @@ var Autocomplete = React.createClass({
       var _this2 = this;
 
       if (this.state.isOpen === false) {
-        // already selected this, do nothing
+        // menu is closed so there is no selection to accept -> do nothing
         return;
       } else if (this.state.highlightedIndex == null) {
-        // hit enter after focus but before typing anything so no autocomplete attempt yet
+        // input has focus but no menu item is selected + enter is hit -> close the menu, highlight whatever's in input
         this.setState({
           isOpen: false
         }, function () {
           _this2.refs.input.select();
         });
       } else {
+        // text entered + menu item has been highlighted + enter is hit -> update value to that of selected menu item, close the menu
         var item = this.getFilteredItems()[this.state.highlightedIndex];
         this.setState({
           value: this.props.getItemValue(item),
@@ -212,10 +217,10 @@ var Autocomplete = React.createClass({
   setMenuPositions: function setMenuPositions() {
     var node = this.refs.input;
     var rect = node.getBoundingClientRect();
-    var computedStyle = getComputedStyle(node);
-    var marginBottom = parseInt(computedStyle.marginBottom, 10);
-    var marginLeft = parseInt(computedStyle.marginLeft, 10);
-    var marginRight = parseInt(computedStyle.marginRight, 10);
+    var computedStyle = global.window.getComputedStyle(node);
+    var marginBottom = parseInt(computedStyle.marginBottom, 10) || 0;
+    var marginLeft = parseInt(computedStyle.marginLeft, 10) || 0;
+    var marginRight = parseInt(computedStyle.marginRight, 10) || 0;
     this.setState({
       menuTop: rect.bottom + marginBottom,
       menuLeft: rect.left + marginLeft,
@@ -302,6 +307,11 @@ var Autocomplete = React.createClass({
     return React.createElement(
       'div',
       { style: { display: 'inline-block' } },
+      React.createElement(
+        'label',
+        { htmlFor: this.id, ref: 'label' },
+        this.props.labelText
+      ),
       React.createElement('input', _extends({}, this.props.inputProps, {
         role: 'combobox',
         'aria-autocomplete': 'both',
@@ -318,7 +328,8 @@ var Autocomplete = React.createClass({
           return _this7.handleKeyUp(event);
         },
         onClick: this.handleInputClick,
-        value: this.state.value
+        value: this.state.value,
+        id: this.id
       })),
       this.state.isOpen && this.renderMenu(),
       this.props.debug && React.createElement(
