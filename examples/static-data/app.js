@@ -1,5 +1,5 @@
 import React from 'react'
-import { getStates, matchStateToTerm, sortStates, styles } from '../utils'
+import { getStates, matchStateToTerm, sortStates, styles } from '../../lib/utils'
 import Autocomplete from '../../lib/index'
 
 let App = React.createClass({
@@ -15,6 +15,8 @@ let App = React.createClass({
 
         <Autocomplete
           initialValue="Ma"
+          labelText="Choose a state from the US"
+          inputProps={{name: "US state"}}
           items={getStates()}
           getItemValue={(item) => item.name}
           shouldItemRender={matchStateToTerm}

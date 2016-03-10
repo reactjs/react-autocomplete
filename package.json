@@ -13,7 +13,8 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo 'lol'",
+    "test": "BABEL_ENV=test mocha --require './lib/__tests__/.setup.js' --compilers js:babel-register './lib/__tests__/Autocomplete-test.js'",
+    "coverage": "BABEL_ENV=test node_modules/.bin/babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot --require './lib/__tests__/.setup.js' './lib/__tests__/Autocomplete-test.js'",
     "start": "rackt server"
   },
   "authors": [
@@ -21,8 +22,21 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.6.5",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.4.0",
+    "enzyme": "^2.0.0",
+    "isparta": "^4.0.0",
+    "jsdom": "^8.1.0",
+    "mocha": "~2.4.5",
+    "mocha-jsdom": "^1.1.0",
     "rackt-cli": "^0.4.0",
-    "react": "^0.14.0"
+    "react": "^0.14.0",
+    "react-addons-test-utils": "^0.14.7"
   },
   "tags": [
     "react",
@@ -32,6 +46,10 @@
   ],
   "keywords": [],
   "dependencies": {
-    "dom-scroll-into-view": "1.0.1"
+    "babel-preset-es2015": "^6.5.0",
+    "dom-scroll-into-view": "1.0.1",
+    "lodash": "^4.5.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   }
 }
