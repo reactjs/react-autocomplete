@@ -44,7 +44,6 @@ _chai2['default'].use((0, _chaiEnzyme2['default'])());
 
 function AutocompleteComponentJSX(extraProps) {
   return _react2['default'].createElement(_Autocomplete2['default'], _extends({
-    initialValue: '',
     labelText: 'Choose a state from the US',
     inputProps: { name: "US state" },
     getItemValue: function (item) {
@@ -82,11 +81,11 @@ describe('Autocomplete acceptance tests', function () {
     expect(autocompleteWrapper.instance().refs.menu).to.exist;
   });
 
-  it('should show results when partial match is typed in', function () {
+  it('should show results when value is a partial match', function () {
 
     // Render autocomplete results upon partial input match
     expect(autocompleteWrapper.ref('menu').children()).to.have.length(50);
-    autocompleteInputWrapper.simulate('change', { target: { value: 'Ar' } });
+    autocompleteWrapper.setProps({ value: 'Ar' });
     expect(autocompleteWrapper.ref('menu').children()).to.have.length(6);
   });
 
@@ -100,6 +99,28 @@ describe('Autocomplete acceptance tests', function () {
 });
 
 // Event handler unit tests
+
+describe('Autocomplete keyPress-><character> event handlers', function () {
+
+  var autocompleteWrapper = (0, _enzyme.mount)(AutocompleteComponentJSX({}));
+  var autocompleteInputWrapper = autocompleteWrapper.find('input');
+
+  it('should pass updated `input.value` to `onChange` and replace with `props.value`', function (done) {
+
+    var value = '';
+    autocompleteWrapper.setProps({ value: value, onChange: function onChange(_, v) {
+        value = v;
+      } });
+
+    autocompleteInputWrapper.get(0).value = 'a';
+    autocompleteInputWrapper.simulate('keyPress', { key: 'a', keyCode: 97, which: 97 });
+    autocompleteInputWrapper.simulate('change');
+
+    expect(autocompleteInputWrapper.get(0).value).to.equal('');
+    expect(value).to.equal('a');
+    done();
+  });
+});
 
 describe('Autocomplete kewDown->ArrowDown event handlers', function () {
 
@@ -201,9 +222,12 @@ describe('Autocomplete kewDown->Enter event handlers', function () {
   });
 
   it('should close menu if input has focus but no item has been selected and then the Enter key is hit', function () {
+    var value = '';
     autocompleteWrapper.setState({ 'isOpen': true });
     autocompleteInputWrapper.simulate('focus');
-    autocompleteInputWrapper.simulate('change', { target: { value: '' } });
+    autocompleteWrapper.setProps({ value: value, onSelect: function onSelect(v) {
+        value = v;
+      } });
 
     // simulate keyUp of backspace, triggering autocomplete suggestion on an empty string, which should result in nothing highlighted
     autocompleteInputWrapper.simulate('keyUp', { key: 'Backspace', keyCode: 8, which: 8 });
@@ -211,21 +235,24 @@ describe('Autocomplete kewDown->Enter event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13 });
 
-    expect(autocompleteWrapper.state('value')).to.equal('');
+    expect(value).to.equal('');
     expect(autocompleteWrapper.state('isOpen')).to.be['false'];
   });
 
-  it('should update input value from selected menu item and close the menu', function () {
+  it('should invoke `onSelect` with the selected menu item and close the menu', function () {
+    var value = 'Ar';
     autocompleteWrapper.setState({ 'isOpen': true });
     autocompleteInputWrapper.simulate('focus');
-    autocompleteInputWrapper.simulate('change', { target: { value: 'Ar' } });
+    autocompleteWrapper.setProps({ value: value, onSelect: function onSelect(v) {
+        value = v;
+      } });
 
     // simulate keyUp of last key, triggering autocomplete suggestion + selection of the suggestion in the menu
     autocompleteInputWrapper.simulate('keyUp', { key: 'r', keyCode: 82, which: 82 });
 
     // Hit enter, updating state.value with the selected Autocomplete suggestion
     autocompleteInputWrapper.simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13 });
-    expect(autocompleteWrapper.state('value')).to.equal('Arizona');
+    expect(value).to.equal('Arizona');
     expect(autocompleteWrapper.state('isOpen')).to.be['false'];
   });
 });
@@ -262,7 +289,7 @@ describe('Autocomplete#renderMenu', function () {
 
   it('should return a menu ReactComponent with a subset of children when partial match text has been entered', function () {
     // Input 'Ar' should result in 6 items in the menu, populated from autocomplete.
-    autocompleteInputWrapper.simulate('change', { target: { value: 'Ar' } });
+    autocompleteWrapper.setProps({ value: 'Ar' });
 
     var autocompleteMenu = autocompleteWrapper.instance().renderMenu();
     expect(autocompleteMenu.props.children.length).to.be.equal(6);

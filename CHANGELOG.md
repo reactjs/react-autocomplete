@@ -1,4 +1,16 @@
-v0.2.1 - Wed, 12 Aug 2015 20:22:13 GMT
+v1.0.0-rc1 - 31 Mar 2016
+--------------------------------------
+
+- Updated this component to no longer use internal state
+for retaining value, this is prop driven now.
+- The version number `1.0.0-rc1` is an unforunate coincidence,
+We're only bumping this as it introduces breaking changes.
+- Other outstanding PRs may be merged in to the the final
+release so we can break several things at once (now that we
+have tests of course)
+
+
+v0.2.1 - 10 Mar 2016
 --------------------------------------
 
 - Added unit tests (thanks @ryanalane)
