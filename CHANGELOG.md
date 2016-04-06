@@ -1,3 +1,11 @@
+v1.0.0-rc2 - 31 Mar 2016
+--------------------------------------
+
+- Fixed a blocking issues for IE 11 users, detailed in #80
+- Added `wrapperProps` and `wrapperStyle` props that are passed
+to the `<Autocomplete />`'s root HTML wrapper. (via #91)
+
+
 v1.0.0-rc1 - 31 Mar 2016
 --------------------------------------
 

@@ -91,12 +91,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    renderItem: React.PropTypes.func.isRequired,
 	    menuStyle: React.PropTypes.object,
 	    inputProps: React.PropTypes.object,
-	    labelText: React.PropTypes.string
+	    labelText: React.PropTypes.string,
+	    wrapperProps: React.PropTypes.object,
+	    wrapperStyle: React.PropTypes.object
 	  },
 	
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      value: '',
+	      wrapperProps: {},
+	      wrapperStyle: {
+	        display: 'inline-block'
+	      },
 	      inputProps: {},
 	      labelText: '',
 	      onChange: function onChange() {},
@@ -158,11 +164,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  handleKeyDown: function handleKeyDown(event) {
+	    var _this = this;
+	
 	    if (this.keyDownHandlers[event.key]) this.keyDownHandlers[event.key].call(this, event);else {
-	      this.setState({
-	        highlightedIndex: null,
-	        isOpen: true
-	      });
+	      var _ret = (function () {
+	        var _event$target = event.target;
+	        var selectionStart = _event$target.selectionStart;
+	        var value = _event$target.value;
+	
+	        if (value === _this.state.value)
+	          // Nothing changed, no need to do anything. This also prevents
+	          // our workaround below from nuking user-made selections
+	          return {
+	            v: undefined
+	          };
+	        _this.setState({
+	          highlightedIndex: null,
+	          isOpen: true
+	        }, function () {
+	          // Restore caret position before autocompletion process
+	          // to work around a setSelectionRange bug in IE (#80)
+	          _this.refs.input.selectionStart = selectionStart;
+	        });
+	      })();
+	
+	      if (typeof _ret === 'object') return _ret.v;
 	    }
 	  },
 	
@@ -204,7 +230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	
 	    Enter: function Enter(event) {
-	      var _this = this;
+	      var _this2 = this;
 	
 	      if (this.state.isOpen === false) {
 	        // menu is closed so there is no selection to accept -> do nothing
@@ -214,7 +240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.setState({
 	          isOpen: false
 	        }, function () {
-	          _this.refs.input.select();
+	          _this2.refs.input.select();
 	        });
 	      } else {
 	        // text entered + menu item has been highlighted + enter is hit -> update value to that of selected menu item, close the menu
@@ -225,8 +251,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          highlightedIndex: null
 	        }, function () {
 	          //this.refs.input.focus() // TODO: file issue
-	          _this.refs.input.setSelectionRange(value.length, value.length);
-	          _this.props.onSelect(value, item);
+	          _this2.refs.input.setSelectionRange(value.length, value.length);
+	          _this2.props.onSelect(value, item);
 	        });
 	      }
 	    },
@@ -240,19 +266,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  getFilteredItems: function getFilteredItems() {
-	    var _this2 = this;
+	    var _this3 = this;
 	
 	    var items = this.props.items;
 	
 	    if (this.props.shouldItemRender) {
 	      items = items.filter(function (item) {
-	        return _this2.props.shouldItemRender(item, _this2.props.value);
+	        return _this3.props.shouldItemRender(item, _this3.props.value);
 	      });
 	    }
 	
 	    if (this.props.sortItems) {
 	      items.sort(function (a, b) {
-	        return _this2.props.sortItems(a, b, _this2.props.value);
+	        return _this3.props.sortItems(a, b, _this3.props.value);
 	      });
 	    }
 	
@@ -260,7 +286,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  maybeAutoCompleteText: function maybeAutoCompleteText() {
-	    var _this3 = this;
+	    var _this4 = this;
 	
 	    if (this.props.value === '') return;
 	    var highlightedIndex = this.state.highlightedIndex;
@@ -274,7 +300,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var node = this.refs.input;
 	      var setSelection = function setSelection() {
 	        node.value = itemValue;
-	        node.setSelectionRange(_this3.props.value.length, itemValue.length);
+	        node.setSelectionRange(_this4.props.value.length, itemValue.length);
 	      };
 	      if (highlightedIndex === null) this.setState({ highlightedIndex: 0 }, setSelection);else setSelection();
 	    }
@@ -299,16 +325,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  selectItemFromMouse: function selectItemFromMouse(item) {
-	    var _this4 = this;
+	    var _this5 = this;
 	
 	    var value = this.props.getItemValue(item);
 	    this.setState({
 	      isOpen: false,
 	      highlightedIndex: null
 	    }, function () {
-	      _this4.props.onSelect(value, item);
-	      _this4.refs.input.focus();
-	      _this4.setIgnoreBlur(false);
+	      _this5.props.onSelect(value, item);
+	      _this5.refs.input.focus();
+	      _this5.setIgnoreBlur(false);
 	    });
 	  },
 	
@@ -317,19 +343,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  renderMenu: function renderMenu() {
-	    var _this5 = this;
+	    var _this6 = this;
 	
 	    var items = this.getFilteredItems().map(function (item, index) {
-	      var element = _this5.props.renderItem(item, _this5.state.highlightedIndex === index, { cursor: 'default' });
+	      var element = _this6.props.renderItem(item, _this6.state.highlightedIndex === index, { cursor: 'default' });
 	      return React.cloneElement(element, {
 	        onMouseDown: function onMouseDown() {
-	          return _this5.setIgnoreBlur(true);
+	          return _this6.setIgnoreBlur(true);
 	        },
 	        onMouseEnter: function onMouseEnter() {
-	          return _this5.highlightItemFromMouse(index);
+	          return _this6.highlightItemFromMouse(index);
 	        },
 	        onClick: function onClick() {
-	          return _this5.selectItemFromMouse(item);
+	          return _this6.selectItemFromMouse(item);
 	        },
 	        ref: 'item-' + index
 	      });
@@ -361,7 +387,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	
 	  render: function render() {
-	    var _this6 = this;
+	    var _this7 = this;
 	
 	    if (this.props.debug) {
 	      // you don't like it, you love it
@@ -370,20 +396,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        state: this.state
 	      });
 	    }
-	    return React.createElement('div', { style: { display: 'inline-block' } }, React.createElement('label', { htmlFor: this.id, ref: 'label' }, this.props.labelText), React.createElement('input', _extends({}, this.props.inputProps, {
+	    return React.createElement('div', _extends({ style: _extends({}, this.props.wrapperStyle) }, this.props.wrapperProps), React.createElement('label', { htmlFor: this.id, ref: 'label' }, this.props.labelText), React.createElement('input', _extends({}, this.props.inputProps, {
 	      role: 'combobox',
 	      'aria-autocomplete': 'both',
 	      ref: 'input',
 	      onFocus: this.handleInputFocus,
 	      onBlur: this.handleInputBlur,
 	      onChange: function onChange(event) {
-	        return _this6.handleChange(event);
+	        return _this7.handleChange(event);
 	      },
 	      onKeyDown: function onKeyDown(event) {
-	        return _this6.handleKeyDown(event);
+	        return _this7.handleKeyDown(event);
 	      },
 	      onKeyUp: function onKeyUp(event) {
-	        return _this6.handleKeyUp(event);
+	        return _this7.handleKeyUp(event);
 	      },
 	      onClick: this.handleInputClick,
 	      value: this.props.value,
