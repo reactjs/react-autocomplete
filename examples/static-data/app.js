@@ -10,16 +10,14 @@ let App = React.createClass({
     return (
       <div>
         <h1>Basic Example with Static Data</h1>
-
         <p>
           When using static data, you use the client to sort and filter the items,
           so <code>Autocomplete</code> has methods baked in to help.
         </p>
-
+        <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
           value={this.state.value}
-          labelText="Choose a state from the US"
-          inputProps={{name: "US state"}}
+          inputProps={{name: "US state", id: "states-autocomplete"}}
           items={getStates()}
           getItemValue={(item) => item.name}
           shouldItemRender={matchStateToTerm}
