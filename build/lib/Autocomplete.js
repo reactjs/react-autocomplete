@@ -3,7 +3,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
-var lodash = require('lodash');
 var scrollIntoView = require('dom-scroll-into-view');
 
 var _debugStates = [];
@@ -19,7 +18,6 @@ var Autocomplete = React.createClass({
     renderItem: React.PropTypes.func.isRequired,
     menuStyle: React.PropTypes.object,
     inputProps: React.PropTypes.object,
-    labelText: React.PropTypes.string,
     wrapperProps: React.PropTypes.object,
     wrapperStyle: React.PropTypes.object
   },
@@ -32,7 +30,6 @@ var Autocomplete = React.createClass({
         display: 'inline-block'
       },
       inputProps: {},
-      labelText: '',
       onChange: function onChange() {},
       onSelect: function onSelect(value, item) {},
       renderMenu: function renderMenu(items, value, style) {
@@ -62,7 +59,6 @@ var Autocomplete = React.createClass({
   },
 
   componentWillMount: function componentWillMount() {
-    this.id = lodash.uniqueId('autocomplete-');
     this._ignoreBlur = false;
     this._performAutoCompleteOnUpdate = false;
     this._performAutoCompleteOnKeyUp = false;
@@ -324,14 +320,10 @@ var Autocomplete = React.createClass({
         state: this.state
       });
     }
+
     return React.createElement(
       'div',
       _extends({ style: _extends({}, this.props.wrapperStyle) }, this.props.wrapperProps),
-      React.createElement(
-        'label',
-        { htmlFor: this.id, ref: 'label' },
-        this.props.labelText
-      ),
       React.createElement('input', _extends({}, this.props.inputProps, {
         role: 'combobox',
         'aria-autocomplete': 'both',
@@ -348,8 +340,7 @@ var Autocomplete = React.createClass({
           return _this7.handleKeyUp(event);
         },
         onClick: this.handleInputClick,
-        value: this.props.value,
-        id: this.id
+        value: this.props.value
       })),
       this.state.isOpen && this.renderMenu(),
       this.props.debug && React.createElement(

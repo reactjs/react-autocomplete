@@ -1,6 +1,6 @@
 {
   "name": "react-autocomplete",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0-rc3",
   "description": "Accessible, extensible, Autocomplete for React.js",
   "main": "./build/lib/index.js",
   "repository": {
@@ -26,7 +26,6 @@
   "dependencies": {
     "babel-preset-es2015": "^6.5.0",
     "dom-scroll-into-view": "1.0.1",
-    "lodash": "^4.5.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   }

@@ -1,3 +1,10 @@
+v1.0.0-rc3 - 25 May 2016
+--------------------------------------
+
+- Removed lodash dependency, reducing overall package size
+- Removed iternally rendered `<label>`, deprecating `labelText` prop
+
+
 v1.0.0-rc2 - 31 Mar 2016
 --------------------------------------
 
