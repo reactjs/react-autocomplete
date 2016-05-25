@@ -16,17 +16,15 @@ let App = React.createClass({
     return (
       <div>
         <h1>Async Data</h1>
-
         <p>
           Autocomplete works great with async data by allowing you to pass in
           items. The <code>onChange</code> event provides you the value to make
           a server request with, then change state and pass in new items, it will
           attempt to autocomplete the first one.
         </p>
-
+        <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
-          labelText="Choose a state from the US"
-          inputProps={{name: "US state"}}
+          inputProps={{name: "US state", id: "states-autocomplete"}}
           ref="autocomplete"
           value={this.state.value}
           items={this.state.unitedStates}
