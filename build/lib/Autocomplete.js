@@ -15,7 +15,9 @@ var Autocomplete = React.createClass({
     onChange: React.PropTypes.func,
     onSelect: React.PropTypes.func,
     shouldItemRender: React.PropTypes.func,
+    getItemValue: React.PropTypes.func.isRequired,
     renderItem: React.PropTypes.func.isRequired,
+    renderMenu: React.PropTypes.func,
     menuStyle: React.PropTypes.object,
     inputProps: React.PropTypes.object,
     wrapperProps: React.PropTypes.object,
@@ -131,9 +133,11 @@ var Autocomplete = React.createClass({
   keyDownHandlers: {
     ArrowDown: function ArrowDown(event) {
       event.preventDefault();
+      var itemsLength = this.getFilteredItems().length;
+      if (!itemsLength) return;
       var highlightedIndex = this.state.highlightedIndex;
 
-      var index = highlightedIndex === null || highlightedIndex === this.getFilteredItems().length - 1 ? 0 : highlightedIndex + 1;
+      var index = highlightedIndex === null || highlightedIndex === itemsLength - 1 ? 0 : highlightedIndex + 1;
       this._performAutoCompleteOnKeyUp = true;
       this.setState({
         highlightedIndex: index,
@@ -143,9 +147,11 @@ var Autocomplete = React.createClass({
 
     ArrowUp: function ArrowUp(event) {
       event.preventDefault();
+      var itemsLength = this.getFilteredItems().length;
+      if (!itemsLength) return;
       var highlightedIndex = this.state.highlightedIndex;
 
-      var index = highlightedIndex === 0 || highlightedIndex === null ? this.getFilteredItems().length - 1 : highlightedIndex - 1;
+      var index = highlightedIndex === 0 || highlightedIndex === null ? itemsLength - 1 : highlightedIndex - 1;
       this._performAutoCompleteOnKeyUp = true;
       this.setState({
         highlightedIndex: index,
@@ -168,6 +174,7 @@ var Autocomplete = React.createClass({
         });
       } else {
         // text entered + menu item has been highlighted + enter is hit -> update value to that of selected menu item, close the menu
+        event.preventDefault();
         var item = this.getFilteredItems()[this.state.highlightedIndex];
         var value = this.props.getItemValue(item);
         this.setState({
@@ -306,8 +313,13 @@ var Autocomplete = React.createClass({
     this.setState({ isOpen: true });
   },
 
+  isInputFocused: function isInputFocused() {
+    var el = React.findDOMNode(this.refs.input);
+    return el.ownerDocument && el === el.ownerDocument.activeElement;
+  },
+
   handleInputClick: function handleInputClick() {
-    if (this.state.isOpen === false) this.setState({ isOpen: true });
+    if (this.isInputFocused() && this.state.isOpen === false) this.setState({ isOpen: true });else if (this.state.highlightedIndex !== null) this.selectItemFromMouse(this.getFilteredItems()[this.state.highlightedIndex]);
   },
 
   render: function render() {
@@ -327,6 +339,7 @@ var Autocomplete = React.createClass({
       React.createElement('input', _extends({}, this.props.inputProps, {
         role: 'combobox',
         'aria-autocomplete': 'both',
+        autoComplete: 'off',
         ref: 'input',
         onFocus: this.handleInputFocus,
         onBlur: this.handleInputBlur,

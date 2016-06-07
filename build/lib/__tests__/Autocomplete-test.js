@@ -241,6 +241,7 @@ describe('Autocomplete kewDown->Enter event handlers', function () {
 
   it('should invoke `onSelect` with the selected menu item and close the menu', function () {
     var value = 'Ar';
+    var defaultPrevented = false;
     autocompleteWrapper.setState({ 'isOpen': true });
     autocompleteInputWrapper.simulate('focus');
     autocompleteWrapper.setProps({ value: value, onSelect: function onSelect(v) {
@@ -251,9 +252,12 @@ describe('Autocomplete kewDown->Enter event handlers', function () {
     autocompleteInputWrapper.simulate('keyUp', { key: 'r', keyCode: 82, which: 82 });
 
     // Hit enter, updating state.value with the selected Autocomplete suggestion
-    autocompleteInputWrapper.simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13 });
+    autocompleteInputWrapper.simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13, preventDefault: function preventDefault() {
+        defaultPrevented = true;
+      } });
     expect(value).to.equal('Arizona');
     expect(autocompleteWrapper.state('isOpen')).to.be['false'];
+    expect(defaultPrevented).to.be['true'];
   });
 });
 
@@ -270,6 +274,26 @@ describe('Autocomplete kewDown->Escape event handlers', function () {
 
     expect(autocompleteWrapper.state('isOpen')).to.be['false'];
     expect(autocompleteWrapper.state('highlightedIndex')).to.be['null'];
+  });
+});
+
+describe('Autocomplete click event handlers', function () {
+
+  var autocompleteWrapper = (0, _enzyme.mount)(AutocompleteComponentJSX({}));
+  var autocompleteInputWrapper = autocompleteWrapper.find('input');
+
+  it('should update input value from selected menu item and close the menu', function () {
+    autocompleteWrapper.setState({ isOpen: true });
+    autocompleteInputWrapper.simulate('focus');
+    autocompleteInputWrapper.simulate('change', { target: { value: 'Ar' } });
+
+    // simulate keyUp of last key, triggering autocomplete suggestion + selection of the suggestion in the menu
+    autocompleteInputWrapper.simulate('keyUp', { key: 'r', keyCode: 82, which: 82 });
+
+    // Click inside input, updating state.value with the selected Autocomplete suggestion
+    autocompleteInputWrapper.simulate('click');
+    expect(autocompleteWrapper.state('value')).to.equal('Arizona');
+    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
   });
 });
 

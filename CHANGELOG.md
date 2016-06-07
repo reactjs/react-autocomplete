@@ -1,3 +1,17 @@
+v1.0.0-rc6 - 5 June 2016
+--------------------------------------
+
+- Updated propTypes for several props being used but not included here
+- Several issues and fixes from #68, #84, #92, #93, #103, #104, #106
+- Actually built the build/dist files and included them in the publish
+
+v1.0.0-rc5 - 5 June 2016
+--------------------------------------
+
+- Dependencies clean up (removed duplicates and large lodash dependency)
+- Demoted React to peerDependency
+
+
 v1.0.0-rc3 - 25 May 2016
 --------------------------------------
 
