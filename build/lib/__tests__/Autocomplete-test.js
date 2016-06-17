@@ -283,16 +283,22 @@ describe('Autocomplete click event handlers', function () {
   var autocompleteInputWrapper = autocompleteWrapper.find('input');
 
   it('should update input value from selected menu item and close the menu', function () {
+    var value = 'Ar';
+    autocompleteWrapper.setProps({
+      value: value,
+      onSelect: function onSelect(v) {
+        value = v;
+      }
+    });
     autocompleteWrapper.setState({ isOpen: true });
-    autocompleteInputWrapper.simulate('focus');
-    autocompleteInputWrapper.simulate('change', { target: { value: 'Ar' } });
+    autocompleteInputWrapper.simulate('change', { target: { value: value } });
 
     // simulate keyUp of last key, triggering autocomplete suggestion + selection of the suggestion in the menu
     autocompleteInputWrapper.simulate('keyUp', { key: 'r', keyCode: 82, which: 82 });
 
     // Click inside input, updating state.value with the selected Autocomplete suggestion
     autocompleteInputWrapper.simulate('click');
-    expect(autocompleteWrapper.state('value')).to.equal('Arizona');
+    expect(value).to.equal('Arizona');
     expect(autocompleteWrapper.state('isOpen')).to.be['false'];
   });
 });

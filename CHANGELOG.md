@@ -1,3 +1,8 @@
+v1.0.0 - 17 June 2016
+--------------------------------------
+
+- Additional failing tests fixed, pre-publish build with 1.0.0 changes
+
 v1.0.0-rc6 - 5 June 2016
 --------------------------------------
 
