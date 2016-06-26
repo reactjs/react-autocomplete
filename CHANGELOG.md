@@ -1,3 +1,8 @@
+v1.0.1 - 26 June 2016
+--------------------------------------
+
+- Fixed compatibility issues with React 15.x, removed use of previously deprecated APIs
+
 v1.0.0 - 17 June 2016
 --------------------------------------
 
