@@ -1,0 +1,21 @@
+{
+  "extends": "rackt",
+  "rules": {
+    "array-bracket-spacing": 0,
+    "comma-dangle": 0,
+    "eol-last": 0,
+    "indent": 0,
+    "no-cond-assign": 0,
+    "no-console": 0,
+    "no-extra-semi": 0,
+    "no-mixed-spaces-and-tabs": 0,
+    "no-multiple-empty-lines": 0,
+    "no-unused-vars": 0,
+    "no-var": 0,
+    "object-curly-spacing": 0,
+    "quotes": 0,
+    "semi": 0,
+    "space-before-blocks": 0,
+    "space-before-function-paren": 0
+  }
+}
