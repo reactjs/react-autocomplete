@@ -53,8 +53,13 @@
     "react-dom": "^0.14.7 || ^15.0.0-0"
   },
   "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/dist/"
+    ],
     "testPathIgnorePatterns": [
-      "build"
+      "<rootDir>/build/",
+      "<rootDir>/dist/"
     ],
     "unmockedModulePathPatterns": [
       "node_modules/react",
