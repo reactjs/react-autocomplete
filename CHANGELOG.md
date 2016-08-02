@@ -3,6 +3,9 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 
 ## Unreleased
 _(add items here for easier creation of next log entry)_
+### Fixed
+- .babelrc presets were causing 1 user(s) to not be able to run tests locally with Jest
+
 
 ## [1.1.0] - 2015-12-03
 ### Added
