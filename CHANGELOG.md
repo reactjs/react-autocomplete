@@ -1,3 +1,29 @@
+# CHANGELOG
+We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recommendations for easier to update & more readable change logs.
+
+## Unreleased
+_(add items here for easier creation of next log entry)_
+
+## [1.1.0] - 2015-12-03
+### Added
+- Ability to return custom components from renderMenu/renderItem (see #127)
+- Added missing `propTypes`
+- Jest for testing (replaces mocha/isparta)
+- eslint consuming the rackt config
+
+### Fixed
+- Custom Menu Example (#81)
+- Bug causing menu to close immediately when clicking into input (#84)
+- Bug referencing `this.state.value` (has since been moved to props)
+- Reset `highlightedIndex` when it's outside `items.length` (#139)
+- Removed typeahead behavior for improved mobile functionality (#40, #111, #152)
+
+### Updated
+- rackt-cli (#131, #51, #107)
+- repo urls (#114)
+- Jest ignore rules & configurations
+
+
 v1.0.1 - 26 June 2016
 --------------------------------------
 
