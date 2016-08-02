@@ -2,33 +2,19 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactAddonsTestUtils = require('react-addons-test-utils');
-
-var _reactAddonsTestUtils2 = _interopRequireDefault(_reactAddonsTestUtils);
-
-var _mochaJsdom = require('mocha-jsdom');
-
-var _mochaJsdom2 = _interopRequireDefault(_mochaJsdom);
-
-var _chai = require('chai');
-
-var _chai2 = _interopRequireDefault(_chai);
-
-var _chaiEnzyme = require('chai-enzyme');
-
-var _chaiEnzyme2 = _interopRequireDefault(_chaiEnzyme);
-
-var _assert = require('assert');
 
 var _enzyme = require('enzyme');
 
@@ -38,9 +24,8 @@ var _Autocomplete2 = _interopRequireDefault(_Autocomplete);
 
 var _utils = require('../utils');
 
-var expect = _chai2['default'].expect;
-
-_chai2['default'].use((0, _chaiEnzyme2['default'])());
+jest.unmock('../Autocomplete');
+jest.unmock('../utils');
 
 function AutocompleteComponentJSX(extraProps) {
   return _react2['default'].createElement(_Autocomplete2['default'], _extends({
@@ -71,30 +56,45 @@ describe('Autocomplete acceptance tests', function () {
 
   it('should display autocomplete menu when input has focus', function () {
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
-    expect(autocompleteWrapper.instance().refs.menu).to.not.exist;
+    expect(autocompleteWrapper.state('isOpen')).toBe(false);
+    expect(autocompleteWrapper.instance().refs.menu).toBe(undefined);
 
     // Display autocomplete menu upon input focus
     autocompleteInputWrapper.simulate('focus');
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['true'];
-    expect(autocompleteWrapper.instance().refs.menu).to.exist;
+    expect(autocompleteWrapper.state('isOpen')).toBe(true);
+    expect(autocompleteWrapper.instance().refs.menu).not.toBe(undefined);
   });
 
   it('should show results when value is a partial match', function () {
 
     // Render autocomplete results upon partial input match
-    expect(autocompleteWrapper.ref('menu').children()).to.have.length(50);
+    expect(autocompleteWrapper.ref('menu').children().length).toBe(50);
     autocompleteWrapper.setProps({ value: 'Ar' });
-    expect(autocompleteWrapper.ref('menu').children()).to.have.length(6);
+    expect(autocompleteWrapper.ref('menu').children().length).toBe(6);
   });
 
   it('should close autocomplete menu when input is blurred', function () {
 
     autocompleteInputWrapper.simulate('blur');
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
-    expect(autocompleteWrapper.instance().refs.menu).to.not.exist;
+    expect(autocompleteWrapper.state('isOpen')).toBe(false);
+    expect(autocompleteWrapper.instance().refs.menu).toBe(undefined);
+  });
+
+  it('should reset `highlightedIndex` when `items` changes', function () {
+    autocompleteWrapper.setState({ highlightedIndex: 10 });
+    autocompleteWrapper.setProps({ items: [] });
+    expect(autocompleteWrapper.state('highlightedIndex')).toBe(null);
+  });
+
+  it('should reset `highlightedIndex` when it falls outside of possible `items` range', function () {
+    var items = (0, _utils.getStates)();
+    autocompleteWrapper.setProps({ items: items });
+    autocompleteWrapper.setState({ highlightedIndex: 10 });
+    items.length = 5;
+    autocompleteWrapper.setProps({ items: items });
+    expect(autocompleteWrapper.state('highlightedIndex')).toBe(null);
   });
 });
 
@@ -116,8 +116,8 @@ describe('Autocomplete keyPress-><character> event handlers', function () {
     autocompleteInputWrapper.simulate('keyPress', { key: 'a', keyCode: 97, which: 97 });
     autocompleteInputWrapper.simulate('change');
 
-    expect(autocompleteInputWrapper.get(0).value).to.equal('');
-    expect(value).to.equal('a');
+    expect(autocompleteInputWrapper.get(0).value).toEqual('');
+    expect(value).toEqual('a');
     done();
   });
 });
@@ -133,8 +133,8 @@ describe('Autocomplete kewDown->ArrowDown event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: "ArrowDown", keyCode: 40, which: 40 });
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['true'];
-    expect(autocompleteWrapper.state('highlightedIndex')).to.equal(0);
+    expect(autocompleteWrapper.state('isOpen')).toBe(true);
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(0);
   });
 
   it('should highlight the "n+1" item in the menu when "n" is selected', function () {
@@ -147,8 +147,8 @@ describe('Autocomplete kewDown->ArrowDown event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: "ArrowDown", keyCode: 40, which: 40 });
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['true'];
-    expect(autocompleteWrapper.state('highlightedIndex')).to.equal(n + 1);
+    expect(autocompleteWrapper.state('isOpen')).toBe(true);
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(n + 1);
   });
 
   it('should highlight the 1st item in the menu when the last is selected', function () {
@@ -160,8 +160,8 @@ describe('Autocomplete kewDown->ArrowDown event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: "ArrowDown", keyCode: 40, which: 40 });
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['true'];
-    expect(autocompleteWrapper.state('highlightedIndex')).to.equal(0);
+    expect(autocompleteWrapper.state('isOpen')).toBe(true);
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(0);
   });
 });
 
@@ -178,8 +178,8 @@ describe('Autocomplete kewDown->ArrowUp event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: 'ArrowUp', keyCode: 38, which: 38 });
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['true'];
-    expect(autocompleteWrapper.state('highlightedIndex')).to.equal(49);
+    expect(autocompleteWrapper.state('isOpen')).toBe(true);
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(49);
   });
 
   it('should highlight the "n-1" item in the menu when "n" is selected', function () {
@@ -192,8 +192,8 @@ describe('Autocomplete kewDown->ArrowUp event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: 'ArrowUp', keyCode: 38, which: 38 });
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['true'];
-    expect(autocompleteWrapper.state('highlightedIndex')).to.equal(n - 1);
+    expect(autocompleteWrapper.state('isOpen')).toBe(true);
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(n - 1);
   });
 
   it('should highlight the last item in the menu when the 1st is selected', function () {
@@ -205,8 +205,8 @@ describe('Autocomplete kewDown->ArrowUp event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: 'ArrowUp', keyCode: 38, which: 38 });
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['true'];
-    expect(autocompleteWrapper.state('highlightedIndex')).to.equal(49);
+    expect(autocompleteWrapper.state('isOpen')).toBe(true);
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(49);
   });
 });
 
@@ -218,7 +218,7 @@ describe('Autocomplete kewDown->Enter event handlers', function () {
   it('should do nothing if the menu is closed', function () {
     autocompleteWrapper.setState({ 'isOpen': false });
     autocompleteWrapper.simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13 });
-    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
+    expect(autocompleteWrapper.state('isOpen')).toBe(false);
   });
 
   it('should close menu if input has focus but no item has been selected and then the Enter key is hit', function () {
@@ -231,12 +231,12 @@ describe('Autocomplete kewDown->Enter event handlers', function () {
 
     // simulate keyUp of backspace, triggering autocomplete suggestion on an empty string, which should result in nothing highlighted
     autocompleteInputWrapper.simulate('keyUp', { key: 'Backspace', keyCode: 8, which: 8 });
-    expect(autocompleteWrapper.state('highlightedIndex')).to.be['null'];
+    expect(autocompleteWrapper.state('highlightedIndex')).toBe(null);
 
     autocompleteInputWrapper.simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13 });
 
-    expect(value).to.equal('');
-    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
+    expect(value).toEqual('');
+    expect(autocompleteWrapper.state('isOpen')).toBe(false);
   });
 
   it('should invoke `onSelect` with the selected menu item and close the menu', function () {
@@ -255,9 +255,9 @@ describe('Autocomplete kewDown->Enter event handlers', function () {
     autocompleteInputWrapper.simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13, preventDefault: function preventDefault() {
         defaultPrevented = true;
       } });
-    expect(value).to.equal('Arizona');
-    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
-    expect(defaultPrevented).to.be['true'];
+    expect(value).toEqual('Arizona');
+    expect(autocompleteWrapper.state('isOpen')).toBe(false);
+    expect(defaultPrevented).toBe(true);
   });
 });
 
@@ -272,8 +272,8 @@ describe('Autocomplete kewDown->Escape event handlers', function () {
 
     autocompleteInputWrapper.simulate('keyDown', { key: 'Escape', keyCode: 27, which: 27 });
 
-    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
-    expect(autocompleteWrapper.state('highlightedIndex')).to.be['null'];
+    expect(autocompleteWrapper.state('isOpen')).toBe(false);
+    expect(autocompleteWrapper.state('highlightedIndex')).toBe(null);
   });
 });
 
@@ -298,8 +298,8 @@ describe('Autocomplete click event handlers', function () {
 
     // Click inside input, updating state.value with the selected Autocomplete suggestion
     autocompleteInputWrapper.simulate('click');
-    expect(value).to.equal('Arizona');
-    expect(autocompleteWrapper.state('isOpen')).to.be['false'];
+    expect(value).toEqual('Arizona');
+    expect(autocompleteWrapper.state('isOpen')).toBe(false);
   });
 });
 
@@ -312,9 +312,9 @@ describe('Autocomplete#renderMenu', function () {
   it('should return a <div ref="menu"> ReactComponent when renderMenu() is called', function () {
     //autocompleteInputWrapper.simulate('change', { target: { value: 'Ar' } });
     var autocompleteMenu = autocompleteWrapper.instance().renderMenu();
-    expect(autocompleteMenu.type).to.be.equal('div');
-    expect(autocompleteMenu.ref).to.be.equal('menu');
-    expect(autocompleteMenu.props.children.length).to.be.equal(50);
+    expect(autocompleteMenu.type).toEqual('div');
+    expect(autocompleteMenu.ref).toEqual('menu');
+    expect(autocompleteMenu.props.children.length).toEqual(50);
   });
 
   it('should return a menu ReactComponent with a subset of children when partial match text has been entered', function () {
@@ -322,6 +322,66 @@ describe('Autocomplete#renderMenu', function () {
     autocompleteWrapper.setProps({ value: 'Ar' });
 
     var autocompleteMenu = autocompleteWrapper.instance().renderMenu();
-    expect(autocompleteMenu.props.children.length).to.be.equal(6);
+    expect(autocompleteMenu.props.children.length).toEqual(6);
+  });
+
+  it('should allow using custom components', function () {
+    var Menu = (function (_React$Component) {
+      _inherits(Menu, _React$Component);
+
+      function Menu() {
+        _classCallCheck(this, Menu);
+
+        _get(Object.getPrototypeOf(Menu.prototype), 'constructor', this).apply(this, arguments);
+      }
+
+      _createClass(Menu, [{
+        key: 'render',
+        value: function render() {
+          return _react2['default'].createElement(
+            'div',
+            null,
+            this.props.items
+          );
+        }
+      }]);
+
+      return Menu;
+    })(_react2['default'].Component);
+
+    var Item = (function (_React$Component2) {
+      _inherits(Item, _React$Component2);
+
+      function Item() {
+        _classCallCheck(this, Item);
+
+        _get(Object.getPrototypeOf(Item.prototype), 'constructor', this).apply(this, arguments);
+      }
+
+      _createClass(Item, [{
+        key: 'render',
+        value: function render() {
+          return _react2['default'].createElement(
+            'div',
+            null,
+            this.props.item.name
+          );
+        }
+      }]);
+
+      return Item;
+    })(_react2['default'].Component);
+
+    var wrapper = (0, _enzyme.mount)(AutocompleteComponentJSX({
+      renderMenu: function renderMenu(items) {
+        return _react2['default'].createElement(Menu, { items: items });
+      },
+      renderItem: function renderItem(item) {
+        return _react2['default'].createElement(Item, { key: item.abbr, item: item });
+      }
+    }));
+    wrapper.setState({ isOpen: true, highlightedIndex: 0 });
+    expect(wrapper.find(Menu).length).toBe(1);
+    expect(wrapper.find(Item).length).toBe(50);
   });
 });
