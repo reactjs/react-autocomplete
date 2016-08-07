@@ -14,6 +14,7 @@
   },
   "scripts": {
     "lint": "eslint lib examples",
+    "pretest": "npm run lint",
     "test": "jest",
     "coverage": "jest --coverage",
     "start": "rackt server"
