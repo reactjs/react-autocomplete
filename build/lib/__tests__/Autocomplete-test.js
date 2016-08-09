@@ -120,6 +120,22 @@ describe('Autocomplete keyPress-><character> event handlers', function () {
     expect(value).toEqual('a');
     done();
   });
+
+  it('should highlight top match', function () {
+    var autocompleteWrapper = (0, _enzyme.mount)(AutocompleteComponentJSX({}));
+    autocompleteWrapper.setState({ isOpen: true });
+    autocompleteWrapper.setProps({ value: 'a' });
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(0);
+  });
+
+  it('should not highlight top match when autoHighlight=false', function () {
+    var autocompleteWrapper = (0, _enzyme.mount)(AutocompleteComponentJSX({
+      autoHighlight: false
+    }));
+    autocompleteWrapper.setState({ isOpen: true });
+    autocompleteWrapper.setProps({ value: 'a' });
+    expect(autocompleteWrapper.state('highlightedIndex')).toEqual(null);
+  });
 });
 
 describe('Autocomplete kewDown->ArrowDown event handlers', function () {

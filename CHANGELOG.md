@@ -3,6 +3,8 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
+
+## [1.2.0] - 2016-08-09
 ### Added
 - `props.autoHighlight` to toggle automatic highlighting of top match (see #146 & #159)
 

@@ -28,6 +28,7 @@ var Autocomplete = React.createClass({
     inputProps: React.PropTypes.object,
     wrapperProps: React.PropTypes.object,
     wrapperStyle: React.PropTypes.object,
+    autoHighlight: React.PropTypes.bool,
     debug: React.PropTypes.bool
   },
 
@@ -55,11 +56,12 @@ var Autocomplete = React.createClass({
         fontSize: '90%',
         position: 'fixed',
         overflow: 'auto',
-        maxHeight: '50%' }
+        maxHeight: '50%' },
+      // TODO: don't cheat, let it flow to the bottom
+      autoHighlight: true
     };
   },
 
-  // TODO: don't cheat, let it flow to the bottom
   getInitialState: function getInitialState() {
     return {
       isOpen: false,
@@ -213,7 +215,7 @@ var Autocomplete = React.createClass({
   },
 
   maybeAutoCompleteText: function maybeAutoCompleteText() {
-    if (this.props.value === '') return;
+    if (!this.props.autoHighlight || this.props.value === '') return;
     var highlightedIndex = this.state.highlightedIndex;
 
     var items = this.getFilteredItems();
@@ -252,7 +254,6 @@ var Autocomplete = React.createClass({
     }, function () {
       _this3.props.onSelect(value, item);
       _this3.refs.input.focus();
-      _this3.setIgnoreBlur(false);
     });
   },
 
@@ -268,7 +269,7 @@ var Autocomplete = React.createClass({
       return React.cloneElement(element, {
         onMouseDown: function onMouseDown() {
           return _this4.setIgnoreBlur(true);
-        },
+        }, // Ignore blur to prevent menu from de-rendering before we can process click
         onMouseEnter: function onMouseEnter() {
           return _this4.highlightItemFromMouse(index);
         },
@@ -296,7 +297,10 @@ var Autocomplete = React.createClass({
   },
 
   handleInputFocus: function handleInputFocus() {
-    if (this._ignoreBlur) return;
+    if (this._ignoreBlur) {
+      this.setIgnoreBlur(false);
+      return;
+    }
     // We don't want `selectItemFromMouse` to trigger when
     // the user clicks into the input to focus it, so set this
     // flag to cancel out the logic in `handleInputClick`.
