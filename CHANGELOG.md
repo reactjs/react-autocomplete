@@ -1,13 +1,16 @@
 # CHANGELOG
 We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recommendations for easier to update & more readable change logs.
 
-## Unreleased
+## [Unreleased]
 _(add items here for easier creation of next log entry)_
+### Added
+- `props.autoHighlight` to toggle automatic highlighting of top match (see #146 & #159)
+
 ### Fixed
+- Bug which prevented menu from closing properly in IE (see #153)
 - .babelrc presets were causing 1 user(s) to not be able to run tests locally with Jest
 
-
-## [1.1.0] - 2015-12-03
+## [1.1.0] - 2016-08-02
 ### Added
 - Ability to return custom components from renderMenu/renderItem (see #127)
 - Added missing `propTypes`
@@ -27,7 +30,7 @@ _(add items here for easier creation of next log entry)_
 - Jest ignore rules & configurations
 
 
-v1.0.1 - 26 June 2016
+## [1.0.1] - 2016-06-26
 --------------------------------------
 
 - Fixed compatibility issues with React 15.x, removed use of previously deprecated APIs
@@ -113,4 +116,6 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/reactjs/react-autocomplete/compare/v1.0.1...v1.1.0
+[1.0.1]: https://github.com/reactjs/react-autocomplete/compare/v1.0.0...v1.0.1
