@@ -3,6 +3,8 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
+### Removed
+- `bower.json` has been removed from the repo
 
 
 ## [1.2.1] - 2016-08-09
