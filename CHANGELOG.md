@@ -3,9 +3,14 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
+
+## [1.3.0] - 2016-08-01
+### Added
+- `props.open` to manually control when the menu is open/closed (#163)
+- `props.onMenuVisibilityChange` callback that is invoked every time the menu is opened/closed by `Autocomplete`'s internal logic. Pairs well with `props.open` for granulated control over the menu's visibility (#163)
+
 ### Removed
 - `bower.json` has been removed from the repo
-
 
 ## [1.2.1] - 2016-08-09
 ### Fixed
@@ -126,7 +131,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/reactjs/react-autocomplete/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/reactjs/react-autocomplete/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/reactjs/react-autocomplete/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/reactjs/react-autocomplete/compare/v1.0.1...v1.1.0
