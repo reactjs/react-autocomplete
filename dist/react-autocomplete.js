@@ -101,6 +101,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    wrapperProps: React.PropTypes.object,
 	    wrapperStyle: React.PropTypes.object,
 	    autoHighlight: React.PropTypes.bool,
+	    onMenuVisibilityChange: React.PropTypes.func,
+	    open: React.PropTypes.bool,
 	    debug: React.PropTypes.bool
 	  },
 	
@@ -130,7 +132,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        overflow: 'auto',
 	        maxHeight: '50%' },
 	      // TODO: don't cheat, let it flow to the bottom
-	      autoHighlight: true
+	      autoHighlight: true,
+	      onMenuVisibilityChange: function onMenuVisibilityChange() {}
 	    };
 	  },
 	
@@ -169,6 +172,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    this.maybeScrollItemIntoView();
+	    if (prevState.isOpen !== this.state.isOpen) {
+	      this.props.onMenuVisibilityChange(this.state.isOpen);
+	    }
 	  },
 	
 	  maybeScrollItemIntoView: function maybeScrollItemIntoView() {
@@ -421,7 +427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      },
 	      onClick: this.handleInputClick,
 	      value: this.props.value
-	    })), this.state.isOpen && this.renderMenu(), this.props.debug && React.createElement('pre', { style: { marginLeft: 300 } }, JSON.stringify(_debugStates.slice(_debugStates.length - 5, _debugStates.length), null, 2)));
+	    })), ('open' in this.props ? this.props.open : this.state.isOpen) && this.renderMenu(), this.props.debug && React.createElement('pre', { style: { marginLeft: 300 } }, JSON.stringify(_debugStates.slice(_debugStates.length - 5, _debugStates.length), null, 2)));
 	  }
 	});
 	

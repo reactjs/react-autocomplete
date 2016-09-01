@@ -29,6 +29,8 @@ var Autocomplete = React.createClass({
     wrapperProps: React.PropTypes.object,
     wrapperStyle: React.PropTypes.object,
     autoHighlight: React.PropTypes.bool,
+    onMenuVisibilityChange: React.PropTypes.func,
+    open: React.PropTypes.bool,
     debug: React.PropTypes.bool
   },
 
@@ -58,7 +60,8 @@ var Autocomplete = React.createClass({
         overflow: 'auto',
         maxHeight: '50%' },
       // TODO: don't cheat, let it flow to the bottom
-      autoHighlight: true
+      autoHighlight: true,
+      onMenuVisibilityChange: function onMenuVisibilityChange() {}
     };
   },
 
@@ -97,6 +100,9 @@ var Autocomplete = React.createClass({
     }
 
     this.maybeScrollItemIntoView();
+    if (prevState.isOpen !== this.state.isOpen) {
+      this.props.onMenuVisibilityChange(this.state.isOpen);
+    }
   },
 
   maybeScrollItemIntoView: function maybeScrollItemIntoView() {
@@ -353,7 +359,7 @@ var Autocomplete = React.createClass({
         onClick: this.handleInputClick,
         value: this.props.value
       })),
-      this.state.isOpen && this.renderMenu(),
+      ('open' in this.props ? this.props.open : this.state.isOpen) && this.renderMenu(),
       this.props.debug && React.createElement(
         'pre',
         { style: { marginLeft: 300 } },

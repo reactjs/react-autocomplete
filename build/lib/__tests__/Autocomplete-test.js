@@ -96,6 +96,32 @@ describe('Autocomplete acceptance tests', function () {
     autocompleteWrapper.setProps({ items: items });
     expect(autocompleteWrapper.state('highlightedIndex')).toBe(null);
   });
+
+  it('should display menu based on `props.open` when provided', function () {
+    var tree = (0, _enzyme.mount)(AutocompleteComponentJSX({}));
+    expect(tree.state('isOpen')).toBe(false);
+    expect(tree.find('> div').length).toBe(0);
+    tree.setState({ isOpen: true });
+    expect(tree.find('> div').length).toBe(1);
+    tree.setProps({ open: false });
+    tree.setState({ isOpen: false });
+    expect(tree.find('> div').length).toBe(0);
+    tree.setProps({ open: true });
+    expect(tree.find('> div').length).toBe(1);
+  });
+
+  it('should invoke `props.inMenuVisibilityChange` when `state.isOpen` changes', function () {
+    var onMenuVisibilityChange = jest.fn();
+    var tree = (0, _enzyme.mount)(AutocompleteComponentJSX({ onMenuVisibilityChange: onMenuVisibilityChange }));
+    expect(tree.state('isOpen')).toBe(false);
+    expect(onMenuVisibilityChange.mock.calls.length).toBe(0);
+    tree.setState({ isOpen: true });
+    expect(onMenuVisibilityChange.mock.calls.length).toBe(1);
+    expect(onMenuVisibilityChange.mock.calls[0][0]).toBe(true);
+    tree.setState({ isOpen: false });
+    expect(onMenuVisibilityChange.mock.calls.length).toBe(2);
+    expect(onMenuVisibilityChange.mock.calls[1][0]).toBe(false);
+  });
 });
 
 // Event handler unit tests
