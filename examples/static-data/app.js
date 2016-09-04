@@ -18,7 +18,7 @@ let App = React.createClass({
         <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
           value={this.state.value}
-          inputProps={{name: "US state", id: "states-autocomplete"}}
+          inputProps={{ name: "US state", id: "states-autocomplete" }}
           items={getStates()}
           getItemValue={(item) => item.name}
           shouldItemRender={matchStateToTerm}
