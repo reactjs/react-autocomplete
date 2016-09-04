@@ -3,7 +3,6 @@
   "rules": {
     "array-bracket-spacing": 0,
     "comma-dangle": 0,
-    "eol-last": 0,
     "indent": 0,
     "no-cond-assign": 0,
     "no-console": 0,
