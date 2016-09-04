@@ -7,7 +7,6 @@
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "array-bracket-spacing": 0,
-    "comma-dangle": 0,
-    "space-before-function-paren": 0
+    "comma-dangle": 0
   }
 }

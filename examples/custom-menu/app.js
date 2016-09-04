@@ -5,7 +5,7 @@ import { getStates, styles, fakeRequest } from '../../lib/utils'
 
 let App = React.createClass({
 
-  getInitialState () {
+  getInitialState() {
     return {
       value: '',
       unitedStates: getStates(),
@@ -13,7 +13,7 @@ let App = React.createClass({
     }
   },
 
-  render () {
+  render() {
     return (
       <div>
         <h1>Custom Menu</h1>
@@ -58,7 +58,7 @@ let App = React.createClass({
     )
   },
 
-  renderItems (items) {
+  renderItems(items) {
     return items.map((item, index) => {
       const text = item.props.children
       if (index === 0 || items[index - 1].props.children.charAt(0) !== text.charAt(0)) {

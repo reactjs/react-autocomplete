@@ -7,7 +7,7 @@ const STATES = getStates()
 
 class App extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       value: '',
@@ -16,7 +16,7 @@ class App extends Component {
     }
   }
 
-  render () {
+  render() {
     const { state } = this
     const open = state.forceOpen || state.isOpen
     return (

@@ -5,7 +5,7 @@ import { getStates, styles, fakeRequest } from '../../lib/utils'
 
 let App = React.createClass({
 
-  getInitialState () {
+  getInitialState() {
     return {
       value: '',
       unitedStates: getStates(),
@@ -13,7 +13,7 @@ let App = React.createClass({
     }
   },
 
-  render () {
+  render() {
     return (
       <div>
         <h1>Async Data</h1>

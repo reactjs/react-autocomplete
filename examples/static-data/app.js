@@ -7,7 +7,7 @@ let App = React.createClass({
   getInitialState() {
     return { value: 'Ma' }
   },
-  render () {
+  render() {
     return (
       <div>
         <h1>Basic Example with Static Data</h1>
