@@ -3,7 +3,7 @@ import DOM from 'react-dom'
 import Autocomplete from '../../lib/index'
 import { getStates, matchStateToTerm, styles } from '../../lib/utils'
 
-const STATES = getStates();
+const STATES = getStates()
 
 class App extends Component {
 
