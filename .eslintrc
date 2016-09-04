@@ -1,9 +1,13 @@
 {
   "extends": "rackt",
+  "plugins": [
+    "react"
+  ],
   "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     "array-bracket-spacing": 0,
     "comma-dangle": 0,
-    "no-unused-vars": 0,
     "no-var": 0,
     "object-curly-spacing": 0,
     "quotes": 0,

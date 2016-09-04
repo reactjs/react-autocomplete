@@ -1,7 +1,7 @@
 import React from 'react'
 import DOM from 'react-dom'
 import Autocomplete from '../../lib/index'
-import { getStates, matchStateToTerm, sortStates, styles, fakeRequest } from '../../lib/utils'
+import { getStates, styles, fakeRequest } from '../../lib/utils'
 
 let App = React.createClass({
 
