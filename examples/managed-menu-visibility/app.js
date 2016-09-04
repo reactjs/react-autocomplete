@@ -35,7 +35,7 @@ class App extends Component {
         <label htmlFor="states">Choose a US state</label>
         <Autocomplete
           value={state.value}
-          inputProps={{ id: "states" }}
+          inputProps={{ id: 'states' }}
           items={STATES}
           shouldItemRender={matchStateToTerm}
           getItemValue={item => item.name}
