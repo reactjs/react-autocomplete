@@ -59,7 +59,6 @@ let App = React.createClass({
   },
 
   renderItems (items) {
-    console.log(items)
     return items.map((item, index) => {
       var text = item.props.children
       if (index === 0 || items[index - 1].props.children.charAt(0) !== text.charAt(0)) {
