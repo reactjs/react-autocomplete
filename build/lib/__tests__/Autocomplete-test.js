@@ -122,6 +122,21 @@ describe('Autocomplete acceptance tests', function () {
     expect(onMenuVisibilityChange.mock.calls.length).toBe(2);
     expect(onMenuVisibilityChange.mock.calls[1][0]).toBe(false);
   });
+
+  it('should allow specifying any event handler via `props.inputProps`', function () {
+    var handlers = ['Focus', 'Blur', 'KeyDown', 'KeyUp', 'Click'];
+    var spies = [];
+    var inputProps = {};
+    handlers.forEach(function (handler, i) {
+      return inputProps['on' + handler] = spies[i] = jest.fn();
+    });
+    var tree = (0, _enzyme.mount)(AutocompleteComponentJSX({ inputProps: inputProps }));
+    handlers.forEach(function (handler, i) {
+      tree.find('input').simulate(handler.toLowerCase());
+      expect(spies[i].mock.calls.length).toBe(1, handler + ' handler was not called');
+      expect(spies[i].mock.calls[0][0]).toBeDefined(handler + ' handler did not receive event');
+    });
+  });
 });
 
 // Event handler unit tests

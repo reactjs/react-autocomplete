@@ -326,9 +326,13 @@ var Autocomplete = React.createClass({
     this._ignoreClick = false;
   },
 
-  render: function render() {
-    var _this5 = this;
+  composeEventHandlers: function composeEventHandlers(internal, external) {
+    return external ? function (e) {
+      internal(e);external(e);
+    } : internal;
+  },
 
+  render: function render() {
     if (this.props.debug) {
       // you don't like it, you love it
       _debugStates.push({
@@ -337,26 +341,22 @@ var Autocomplete = React.createClass({
       });
     }
 
+    var inputProps = this.props.inputProps;
+
     return React.createElement(
       'div',
       _extends({ style: _extends({}, this.props.wrapperStyle) }, this.props.wrapperProps),
-      React.createElement('input', _extends({}, this.props.inputProps, {
+      React.createElement('input', _extends({}, inputProps, {
         role: 'combobox',
         'aria-autocomplete': 'list',
         autoComplete: 'off',
         ref: 'input',
-        onFocus: this.handleInputFocus,
-        onBlur: this.handleInputBlur,
-        onChange: function (event) {
-          return _this5.handleChange(event);
-        },
-        onKeyDown: function (event) {
-          return _this5.handleKeyDown(event);
-        },
-        onKeyUp: function (event) {
-          return _this5.handleKeyUp(event);
-        },
-        onClick: this.handleInputClick,
+        onFocus: this.composeEventHandlers(this.handleInputFocus, inputProps.onFocus),
+        onBlur: this.composeEventHandlers(this.handleInputBlur, inputProps.onBlur),
+        onChange: this.handleChange,
+        onKeyDown: this.composeEventHandlers(this.handleKeyDown, inputProps.onKeyDown),
+        onKeyUp: this.composeEventHandlers(this.handleKeyUp, inputProps.onKeyUp),
+        onClick: this.composeEventHandlers(this.handleInputClick, inputProps.onClick),
         value: this.props.value
       })),
       ('open' in this.props ? this.props.open : this.state.isOpen) && this.renderMenu(),

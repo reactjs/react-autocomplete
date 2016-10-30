@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("React"), require("ReactDOM"));
+		module.exports = factory(require("react"), require("react-dom"));
 	else if(typeof define === 'function' && define.amd)
-		define(["React", "ReactDOM"], factory);
+		define(["react", "react-dom"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactAutocomplete"] = factory(require("React"), require("ReactDOM"));
+		exports["ReactAutocomplete"] = factory(require("react"), require("react-dom"));
 	else
 		root["ReactAutocomplete"] = factory(root["React"], root["ReactDOM"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
@@ -398,9 +398,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._ignoreClick = false;
 	  },
 	
-	  render: function render() {
-	    var _this5 = this;
+	  composeEventHandlers: function composeEventHandlers(internal, external) {
+	    return external ? function (e) {
+	      internal(e);external(e);
+	    } : internal;
+	  },
 	
+	  render: function render() {
 	    if (this.props.debug) {
 	      // you don't like it, you love it
 	      _debugStates.push({
@@ -409,23 +413,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    }
 	
-	    return React.createElement('div', _extends({ style: _extends({}, this.props.wrapperStyle) }, this.props.wrapperProps), React.createElement('input', _extends({}, this.props.inputProps, {
+	    var inputProps = this.props.inputProps;
+	
+	    return React.createElement('div', _extends({ style: _extends({}, this.props.wrapperStyle) }, this.props.wrapperProps), React.createElement('input', _extends({}, inputProps, {
 	      role: 'combobox',
 	      'aria-autocomplete': 'list',
 	      autoComplete: 'off',
 	      ref: 'input',
-	      onFocus: this.handleInputFocus,
-	      onBlur: this.handleInputBlur,
-	      onChange: function onChange(event) {
-	        return _this5.handleChange(event);
-	      },
-	      onKeyDown: function onKeyDown(event) {
-	        return _this5.handleKeyDown(event);
-	      },
-	      onKeyUp: function onKeyUp(event) {
-	        return _this5.handleKeyUp(event);
-	      },
-	      onClick: this.handleInputClick,
+	      onFocus: this.composeEventHandlers(this.handleInputFocus, inputProps.onFocus),
+	      onBlur: this.composeEventHandlers(this.handleInputBlur, inputProps.onBlur),
+	      onChange: this.handleChange,
+	      onKeyDown: this.composeEventHandlers(this.handleKeyDown, inputProps.onKeyDown),
+	      onKeyUp: this.composeEventHandlers(this.handleKeyUp, inputProps.onKeyUp),
+	      onClick: this.composeEventHandlers(this.handleInputClick, inputProps.onClick),
 	      value: this.props.value
 	    })), ('open' in this.props ? this.props.open : this.state.isOpen) && this.renderMenu(), this.props.debug && React.createElement('pre', { style: { marginLeft: 300 } }, JSON.stringify(_debugStates.slice(_debugStates.length - 5, _debugStates.length), null, 2)));
 	  }
