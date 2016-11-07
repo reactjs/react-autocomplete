@@ -4,6 +4,10 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.4.0] - 2016-11-07
+### Added
+- Add all event handlers specified in `props.inputProps` to `<input>`
+
 ## [1.3.1] - 2016-08-01
 ### Changed
 - Re-publish without `node_modules` and `coverage` included in tarball
@@ -135,7 +139,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/reactjs/react-autocomplete/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/reactjs/react-autocomplete/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/reactjs/react-autocomplete/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/reactjs/react-autocomplete/compare/v1.2.0...v1.2.1
