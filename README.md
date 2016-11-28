@@ -17,6 +17,8 @@ Stuff we need help with:
   pretty lean, on purpose, apps should style this however they'd like)
 - tests (eventually)
 
+To run a development server, run `npm run start`. To build  `build` and `dist` directories, run `node_modules/.bin/rackt build`.
+
 # Tests!
 
 Run them:
@@ -27,3 +29,4 @@ Write them:
 
 Check your work:
 `npm run coverage`
+
