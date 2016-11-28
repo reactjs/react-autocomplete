@@ -2,7 +2,7 @@
   "name": "react-autocomplete",
   "version": "1.4.0",
   "description": "Accessible, extensible, Autocomplete for React.js",
-  "main": "./build/lib/index.js",
+  "main": "./build/lib/Autocomplete.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/reactjs/react-autocomplete.git"
