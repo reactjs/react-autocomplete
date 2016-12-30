@@ -18,12 +18,12 @@ let App = React.createClass({
         <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
           value={this.state.value}
-          inputProps={{name: "US state", id: "states-autocomplete"}}
+          id="states-autocomplete"
           items={getStates()}
           getItemValue={(item) => item.name}
           shouldItemRender={matchStateToTerm}
           sortItems={sortStates}
-          onChange={(event, value) => this.setState({ value })}
+          onChange={e => this.setState({ value: e.target.value })}
           onSelect={value => this.setState({ value })}
           renderItem={(item, isHighlighted) => (
             <div

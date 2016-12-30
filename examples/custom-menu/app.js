@@ -25,11 +25,12 @@ let App = React.createClass({
         <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
           value={this.state.value}
-          inputProps={{name: "US state", id: "states-autocomplete"}}
+          id="states-autocomplete"
           items={this.state.unitedStates}
           getItemValue={(item) => item.name}
           onSelect={(value, state) => this.setState({ value, unitedStates: [state] }) }
-          onChange={(event, value) => {
+          onChange={e => {
+            const { value } = e.target;
             this.setState({ value, loading: true })
             fakeRequest(value, (items) => {
               this.setState({ unitedStates: items, loading: false })

@@ -25,8 +25,7 @@ let App = React.createClass({
         </p>
         <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
-          inputProps={{name: "US state", id: "states-autocomplete"}}
-          ref="autocomplete"
+          id="states-autocomplete"
           value={this.state.value}
           items={this.state.unitedStates}
           getItemValue={(item) => item.name}
@@ -36,7 +35,8 @@ let App = React.createClass({
             // or you could reset it to a default list again
             // this.setState({ unitedStates: getStates() })
           }}
-          onChange={(event, value) => {
+          onChange={e => {
+            const { value } = e.target;
             this.setState({ value, loading: true })
             fakeRequest(value, (items) => {
               this.setState({ unitedStates: items, loading: false })
