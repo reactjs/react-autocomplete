@@ -31,3 +31,14 @@ Write them:
 
 Check your work:
 `npm run coverage`
+
+## Publishing / Releasing
+
+* `rackt build` (you probably need to temporarily delete/move `.babelrc`)
+* `npm run generate-readme`
+* `git commit README.md build/* dist/* -m 'Update build and dist files'`
+* Update `CHANGELOG.md`
+* `git commit CHANGELOG.md -m 'Update CHANGELOG with x.x.x release'`
+* `npm version x.x.x`
+* `npm publish`
+* `git push origin/master --follow-tags`
