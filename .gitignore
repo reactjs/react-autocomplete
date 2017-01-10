@@ -1,3 +1,4 @@
+build/
 examples/__build__
 node_modules/
 coverage/
