@@ -16,6 +16,7 @@
     "generate-readme": "scripty",
     "build": "scripty",
     "build:component": "scripty",
+    "build:examples": "scripty",
     "test": "scripty",
     "test:lint": "scripty",
     "test:jest": "scripty",
