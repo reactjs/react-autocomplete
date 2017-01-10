@@ -79,4 +79,4 @@ class App extends Component {
 
 DOM.render(<App/>, document.getElementById('container'))
 
-
+if (module.hot) { module.hot.accept() }

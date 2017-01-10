@@ -39,3 +39,4 @@ let App = React.createClass({
 
 DOM.render(<App/>, document.getElementById('container'))
 
+if (module.hot) { module.hot.accept() }
