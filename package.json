@@ -13,11 +13,11 @@
     "example": "examples"
   },
   "scripts": {
-    "generate-readme": "node bin/generate-readme.js",
-    "lint": "eslint lib examples bin",
-    "pretest": "npm run lint",
-    "test": "jest",
-    "coverage": "jest --coverage",
+    "generate-readme": "scripty",
+    "test": "scripty",
+    "test:lint": "scripty",
+    "test:jest": "scripty",
+    "coverage": "scripty",
     "start": "rackt server"
   },
   "authors": [
@@ -42,7 +42,8 @@
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-docgen": "^2.13.0",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "scripty": "^1.7.1"
   },
   "tags": [
     "react",
