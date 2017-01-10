@@ -15,6 +15,7 @@
   "scripts": {
     "generate-readme": "scripty",
     "gh-pages": "scripty",
+    "release": "scripty",
     "build": "scripty",
     "build:component": "scripty",
     "build:examples": "scripty",
