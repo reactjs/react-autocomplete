@@ -13,7 +13,8 @@
     "example": "examples"
   },
   "scripts": {
-    "lint": "eslint lib examples",
+    "generate-readme": "node bin/generate-readme.js",
+    "lint": "eslint lib examples bin",
     "pretest": "npm run lint",
     "test": "jest",
     "coverage": "jest --coverage",
@@ -34,9 +35,13 @@
     "eslint": "^2.13.1",
     "eslint-config-rackt": "^1.1.1",
     "jest": "^13.0.0",
+    "lodash.flow": "^3.5.0",
+    "lodash.map": "^4.6.0",
+    "lodash.sortby": "^4.7.0",
     "rackt-cli": "^0.6.1",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
+    "react-docgen": "^2.13.0",
     "react-dom": "^0.14.7"
   },
   "tags": [
