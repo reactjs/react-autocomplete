@@ -99,8 +99,6 @@ returned tree includes `items` or else no items will be rendered.
 of the top-left corner and the width of the dropdown menu.
 
 ### `shouldItemRender: Function` (optional)
-Default value: `function() { return true }`
-
 Arguments: `item: Any, value: String`
 
 Invoked for each entry in `items` and its return value is used to
@@ -131,7 +129,7 @@ Default value:
 }
 ```
 
-This is a shorthand for `inputProps={{ style: <your styles> }}`.
+This is a shorthand for `wrapperProps={{ style: <your styles> }}`.
 Note that `wrapperStyle` is applied before `wrapperProps`, so the latter
 will win if it contains a `style` entry.
 
