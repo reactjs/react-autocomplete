@@ -8,6 +8,10 @@ let App = React.createClass({
     return { value: 'Ma' }
   },
   render () {
+    const { value } = this.state;
+    const items = getStates()
+      // .filter(item => matchStateToTerm(item, value))
+    // items.sort((a, b) => sortStates(a, b, value))
     return (
       <div>
         <h1>Basic Example with Static Data</h1>
@@ -17,21 +21,21 @@ let App = React.createClass({
         </p>
         <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
-          value={this.state.value}
-          inputProps={{name: "US state", id: "states-autocomplete"}}
-          items={getStates()}
-          getItemValue={(item) => item.name}
-          shouldItemRender={matchStateToTerm}
-          sortItems={sortStates}
-          onChange={(event, value) => this.setState({ value })}
-          onSelect={value => this.setState({ value })}
-          renderItem={(item, isHighlighted) => (
+          value={value}
+          id="states-autocomplete"
+          items={items}
+          shouldHighlightItem={(item, value) => item.name.toLowerCase().indexOf(value.trim().toLowerCase()) === 0}
+          onChange={event => this.setState({ value: event.target.value })}
+          onSelect={(event, item) => this.setState({ value: item.name })}
+          renderMenu={items => <div style={{ maxHeight: 200, overflow: 'scroll', position: 'absolute' }}>{items}</div>}
+        >
+          {(item, isHighlighted) => (
             <div
               style={isHighlighted ? styles.highlightedItem : styles.item}
               key={item.abbr}
             >{item.name}</div>
           )}
-        />
+        </Autocomplete>
       </div>
     )
   }
