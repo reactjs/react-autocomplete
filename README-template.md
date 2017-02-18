@@ -6,7 +6,7 @@ Accessible, extensible, Autocomplete for React.js.
 
 ## API
 
-$API_DOC
+${API_DOC}
 
 # Development
 You can start a local development environment with `npm start`. This command starts a static file server on [localhost:8080](http://localhost:8080) which serves the examples in `examples/`. Hot-reload mechanisms are in place which means you don't have to refresh the page or restart the build for changes to take effect.
