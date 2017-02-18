@@ -16,6 +16,7 @@ browserify ../lib/Autocomplete.js \
   > react-autocomplete.js
 uglifyjs react-autocomplete.js \
     --compress \
+    --mangle \
     --in-source-map react-autocomplete.js.map \
     --source-map react-autocomplete.min.js.map \
   > react-autocomplete.min.js
