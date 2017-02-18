@@ -4,6 +4,25 @@ Accessible, extensible, Autocomplete for React.js.
 
 [Examples](https://reactcommunity.org/react-autocomplete/)
 
+## Install
+
+### npm
+
+```bash
+npm install --save react-autocomplete
+```
+
+### yarn
+
+```bash
+yarn add react-autocomplete
+```
+
+### AMD/UMD
+
+* Development: [https://unpkg.com/react-autocomplete@${VERSION}/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@${VERSION}/dist/react-autocomplete.js)
+* Production: [https://unpkg.com/react-autocomplete@${VERSION}/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@${VERSION}/dist/react-autocomplete.min.js)
+
 ## API
 
 ${API_DOC}
