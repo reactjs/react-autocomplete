@@ -3,6 +3,11 @@
   "version": "1.4.0",
   "description": "Accessible, extensible, Autocomplete for React.js",
   "main": "./build/lib/Autocomplete.js",
+  "files": [
+    "build/lib/index.js",
+    "build/lib/Autocomplete.js",
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/reactjs/react-autocomplete.git"
@@ -13,12 +18,17 @@
     "example": "examples"
   },
   "scripts": {
-    "generate-readme": "node bin/generate-readme.js",
-    "lint": "eslint lib examples bin",
-    "pretest": "npm run lint",
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "start": "rackt server"
+    "generate-readme": "scripty",
+    "gh-pages": "scripty",
+    "release": "scripty",
+    "build": "scripty",
+    "build:component": "scripty",
+    "build:examples": "scripty",
+    "test": "scripty",
+    "test:lint": "scripty",
+    "test:jest": "scripty",
+    "coverage": "scripty",
+    "start": "SCRIPTY_PARALLEL=true scripty"
   },
   "authors": [
     "Ryan Florence <rpflorence@gmail.com>"
@@ -30,19 +40,28 @@
     "babel-jest": "^13.0.0",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.3.0",
+    "browserify-hmr": "^0.3.5",
     "enzyme": "^2.0.0",
     "eslint": "^2.13.1",
     "eslint-config-rackt": "^1.1.1",
+    "exorcist": "^0.4.0",
     "jest": "^13.0.0",
     "lodash.flow": "^3.5.0",
     "lodash.map": "^4.6.0",
     "lodash.sortby": "^4.7.0",
-    "rackt-cli": "^0.6.1",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-docgen": "^2.13.0",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "scripty": "^1.7.1",
+    "st": "^1.2.0",
+    "uglify-js": "^2.7.5",
+    "watchify": "^3.8.0",
+    "youemdee": "^1.0.0"
   },
   "tags": [
     "react",
