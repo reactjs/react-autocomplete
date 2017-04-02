@@ -4,6 +4,11 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+
+## [1.4.2] - 2017-04-02
+### Fixed
+- Workaround for "Cannot read property 'ownerDocument' of null"
+
 ## [1.4.1] - 2017-03-16
 ### Fixed
 - Add missing aria-expanded attribute
@@ -143,7 +148,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.4.1...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.4.2...HEAD
+[1.4.2]: https://github.com/reactjs/react-autocomplete/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/reactjs/react-autocomplete/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/reactjs/react-autocomplete/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/reactjs/react-autocomplete/compare/v1.3.0...v1.3.1
