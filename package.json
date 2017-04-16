@@ -1,6 +1,6 @@
 {
   "name": "react-autocomplete",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Accessible, extensible, Autocomplete for React.js",
   "main": "./build/lib/Autocomplete.js",
   "files": [
