@@ -4,6 +4,10 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.4.4] - 2017-04-16
+### Fixed
+- Prevent highlighted selection from being cleared when pressing keys that don't modify `input.value` (e.g. ctrl, alt, left/right arrows, etc)
+
 ## [1.4.3] - 2017-04-16
 ### Fixed
 - Ensure menu positions are set when specifying `props.open`
@@ -151,7 +155,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.4.3...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.4.4...HEAD
+[1.4.4]: https://github.com/reactjs/react-autocomplete/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/reactjs/react-autocomplete/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/reactjs/react-autocomplete/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/reactjs/react-autocomplete/compare/v1.4.0...v1.4.1
