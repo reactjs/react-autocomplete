@@ -106,7 +106,7 @@ fine-grained control over the dropdown menu dynamics.
 Default value:
 ```jsx
 function(items, value, style) {
-  return <div style={{...style, ...this.menuStyle}} children={items}/>
+  return <div style={{ ...style, ...this.menuStyle }} children={items}/>
 }
 ```
 
