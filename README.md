@@ -25,15 +25,17 @@ yarn add react-autocomplete
 
 ## API
 
-### `getItemValue: Function`
+### Props
+
+#### `getItemValue: Function`
 Arguments: `item: Any`
 
 Used to read the display value from each entry in `items`.
 
-### `items: Array`
+#### `items: Array`
 The items to display in the dropdown menu
 
-### `renderItem: Function`
+#### `renderItem: Function`
 Arguments: `item: Any, isHighlighted: Boolean, styles: Object`
 
 Invoked for each entry in `items` that also passes `shouldItemRender` to
@@ -41,13 +43,13 @@ generate the render tree for each item in the dropdown menu. `styles` is
 an optional set of styles that can be applied to improve the look/feel
 of the items in the dropdown menu.
 
-### `autoHighlight: Boolean` (optional)
+#### `autoHighlight: Boolean` (optional)
 Default value: `true`
 
 Whether or not to automatically highlight the top match in the dropdown
 menu.
 
-### `inputProps: Object` (optional)
+#### `inputProps: Object` (optional)
 Default value: `{}`
 
 Props that are applied to the `<input />` element rendered by
@@ -55,7 +57,7 @@ Props that are applied to the `<input />` element rendered by
 specified, apart from the following which are set by `Autocomplete`:
 value, autoComplete, role, aria-autocomplete
 
-### `menuStyle: Object` (optional)
+#### `menuStyle: Object` (optional)
 Default value:
 ```jsx
 {
@@ -74,14 +76,14 @@ Styles that are applied to the dropdown menu in the default `renderMenu`
 implementation. If you override `renderMenu` and you want to use
 `menuStyles` you must manually apply them (`this.props.menuStyles`).
 
-### `onChange: Function` (optional)
+#### `onChange: Function` (optional)
 Default value: `function() {}`
 
 Arguments: `event: Event, value: String`
 
 Invoked every time the user changes the input's value.
 
-### `onMenuVisibilityChange: Function` (optional)
+#### `onMenuVisibilityChange: Function` (optional)
 Default value: `function() {}`
 
 Arguments: `isOpen: Boolean`
@@ -89,20 +91,20 @@ Arguments: `isOpen: Boolean`
 Invoked every time the dropdown menu's visibility changes (i.e. every
 time it is displayed/hidden).
 
-### `onSelect: Function` (optional)
+#### `onSelect: Function` (optional)
 Default value: `function() {}`
 
 Arguments: `value: String, item: Any`
 
 Invoked when the user selects an item from the dropdown menu.
 
-### `open: Boolean` (optional)
+#### `open: Boolean` (optional)
 Used to override the internal logic which displays/hides the dropdown
 menu. This is useful if you want to force a certain state based on your
 UX/business logic. Use it together with `onMenuVisibilityChange` for
 fine-grained control over the dropdown menu dynamics.
 
-### `renderMenu: Function` (optional)
+#### `renderMenu: Function` (optional)
 Default value:
 ```jsx
 function(items, value, style) {
@@ -117,30 +119,30 @@ returned tree includes `items` or else no items will be rendered.
 `styles` will contain { top, left, minWidth } which are the coordinates
 of the top-left corner and the width of the dropdown menu.
 
-### `shouldItemRender: Function` (optional)
+#### `shouldItemRender: Function` (optional)
 Arguments: `item: Any, value: String`
 
 Invoked for each entry in `items` and its return value is used to
 determine whether or not it should be displayed in the dropdown menu.
 By default all items are always rendered.
 
-### `sortItems: Function` (optional)
+#### `sortItems: Function` (optional)
 Arguments: `itemA: Any, itemB: Any, value: String`
 
 The function which is used to sort `items` before display.
 
-### `value: Any` (optional)
+#### `value: Any` (optional)
 Default value: `''`
 
 The value to display in the input field
 
-### `wrapperProps: Object` (optional)
+#### `wrapperProps: Object` (optional)
 Default value: `{}`
 
 Props that are applied to the element which wraps the `<input />` and
 dropdown menu elements rendered by `Autocomplete`.
 
-### `wrapperStyle: Object` (optional)
+#### `wrapperStyle: Object` (optional)
 Default value:
 ```jsx
 {
@@ -153,6 +155,28 @@ Note that `wrapperStyle` is applied before `wrapperProps`, so the latter
 will win if it contains a `style` entry.
 
 
+### Imperative API
+
+In addition to the props there is an API available on the mounted element which is similar to that of `HTMLInputElement`. In other words: you can access most of the common `<input>` methods directly on an `Autocomplete` instance. An example:
+
+```jsx
+class MyComponent extends Component {
+  componentDidMount() {
+    // Focus the input and select "world"
+    this.input.focus()
+    this.input.setSelectionRange(6, 11)
+  }
+  render() {
+    return (
+      <Autocomplete
+        ref={el => this.input = el}
+        value="hello world"
+        ...
+      />
+    )
+  }
+}
+```
 
 # Development
 You can start a local development environment with `npm start`. This command starts a static file server on [localhost:8080](http://localhost:8080) which serves the examples in `examples/`. Hot-reload mechanisms are in place which means you don't have to refresh the page or restart the build for changes to take effect.
