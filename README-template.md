@@ -25,7 +25,31 @@ yarn add react-autocomplete
 
 ## API
 
+### Props
+
 ${API_DOC}
+### Imperative API
+
+In addition to the props there is an API available on the mounted element which is similar to that of `HTMLInputElement`. In other words: you can access most of the common `<input>` methods directly on an `Autocomplete` instance. An example:
+
+```jsx
+class MyComponent extends Component {
+  componentDidMount() {
+    // Focus the input and select "world"
+    this.input.focus()
+    this.input.setSelectionRange(6, 11)
+  }
+  render() {
+    return (
+      <Autocomplete
+        ref={el => this.input = el}
+        value="hello world"
+        ...
+      />
+    )
+  }
+}
+```
 
 # Development
 You can start a local development environment with `npm start`. This command starts a static file server on [localhost:8080](http://localhost:8080) which serves the examples in `examples/`. Hot-reload mechanisms are in place which means you don't have to refresh the page or restart the build for changes to take effect.
