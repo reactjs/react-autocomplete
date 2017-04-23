@@ -20,8 +20,8 @@ yarn add react-autocomplete
 
 ### AMD/UMD
 
-* Development: [https://unpkg.com/react-autocomplete@1.4.4/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@1.4.4/dist/react-autocomplete.js)
-* Production: [https://unpkg.com/react-autocomplete@1.4.4/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@1.4.4/dist/react-autocomplete.min.js)
+* Development: [https://unpkg.com/react-autocomplete@1.5.0/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@1.5.0/dist/react-autocomplete.js)
+* Production: [https://unpkg.com/react-autocomplete@1.5.0/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@1.5.0/dist/react-autocomplete.min.js)
 
 ## API
 
