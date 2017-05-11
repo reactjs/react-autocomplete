@@ -4,6 +4,10 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.5.2] - 2017-0511
+### Fixed
+- Prevent onFocus and onBlur when selecting an item (#229)
+
 ## [1.5.1] - 2017-04-27
 ### Fixed
 - Remove logic that selected highlighted item on input click. This was no longer desired after typeahead was removed.
@@ -163,7 +167,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.1...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.2...HEAD
+[1.5.2]: https://github.com/reactjs/react-autocomplete/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/reactjs/react-autocomplete/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/reactjs/react-autocomplete/compare/v1.4.4...v1.5.0
 [1.4.4]: https://github.com/reactjs/react-autocomplete/compare/v1.4.3...v1.4.4
