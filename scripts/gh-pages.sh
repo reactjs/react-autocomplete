@@ -7,6 +7,7 @@ fi
 git checkout master
 npm run build:examples
 cp -r examples/* .
+touch .nojekyll
 git add -A
 git commit -m 'Updating gh-pages'
 git push --force origin HEAD:gh-pages
