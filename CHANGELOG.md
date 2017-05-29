@@ -4,6 +4,11 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.5.5] - 2017-05-29
+### Fixed
+- Replace deprecated React.PropTypes with prop-types module (#232)
+- Replace deprecated React.createClass with class syntax (#232)
+
 ## [1.5.4] - 2017-05-25
 ### Fixed
 - Delay re-focus until all actions have been processed (#240)
@@ -175,7 +180,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.4...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.5...HEAD
+[1.5.5]: https://github.com/reactjs/react-autocomplete/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/reactjs/react-autocomplete/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/reactjs/react-autocomplete/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/reactjs/react-autocomplete/compare/v1.5.1...v1.5.2
