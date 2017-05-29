@@ -3,15 +3,17 @@ import DOM from 'react-dom'
 import Autocomplete from '../../lib/index'
 import { getStates, styles, fakeRequest } from '../../lib/utils'
 
-let App = React.createClass({
+class App extends React.Component {
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props)
+    this.state = {
       value: '',
       unitedStates: getStates(),
       loading: false
     }
-  },
+    this.renderItems = this.renderItems.bind(this)
+  }
 
   render() {
     return (
@@ -56,7 +58,7 @@ let App = React.createClass({
         />
       </div>
     )
-  },
+  }
 
   renderItems(items) {
     return items.map((item, index) => {
@@ -75,7 +77,7 @@ let App = React.createClass({
       }
     })
   }
-})
+}
 
 DOM.render(<App/>, document.getElementById('container'))
 

@@ -3,10 +3,8 @@ import DOM from 'react-dom'
 import { getStates, matchStateToTerm, sortStates, styles } from '../../lib/utils'
 import Autocomplete from '../../lib/index'
 
-let App = React.createClass({
-  getInitialState() {
-    return { value: 'Ma' }
-  },
+class App extends React.Component {
+  state = { value: 'Ma' }
   render() {
     return (
       <div>
@@ -35,7 +33,7 @@ let App = React.createClass({
       </div>
     )
   }
-})
+}
 
 DOM.render(<App/>, document.getElementById('container'))
 
