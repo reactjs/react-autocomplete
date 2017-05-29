@@ -1,5 +1,5 @@
-build/
-dist/
-examples/__build__
-node_modules/
-coverage/
+/build/
+/dist/
+/examples/__build__
+/node_modules/
+/coverage/
