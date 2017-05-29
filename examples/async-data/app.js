@@ -6,10 +6,10 @@ import { getStates, styles, fakeRequest } from '../../lib/utils'
 class App extends React.Component {
 
   state = {
-      value: '',
-      unitedStates: getStates(),
-      loading: false
-    }
+    value: '',
+    unitedStates: getStates(),
+    loading: false
+  }
 
   render() {
     return (
