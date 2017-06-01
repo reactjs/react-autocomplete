@@ -4,6 +4,10 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.5.6] - 2017-06-01
+### Fixed
+- Include prop-types in UMD build, fixes an unintentional breaking change introduced in 1.5.5
+
 ## [1.5.5] - 2017-05-29
 ### Fixed
 - Replace deprecated React.PropTypes with prop-types module (#232)
@@ -180,7 +184,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.5...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.6...HEAD
+[1.5.6]: https://github.com/reactjs/react-autocomplete/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/reactjs/react-autocomplete/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/reactjs/react-autocomplete/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/reactjs/react-autocomplete/compare/v1.5.2...v1.5.3
