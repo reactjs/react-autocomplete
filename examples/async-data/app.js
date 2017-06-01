@@ -23,7 +23,7 @@ class App extends React.Component {
         </p>
         <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
-          inputProps={{ name: 'US state', id: 'states-autocomplete' }}
+          inputProps={{ id: 'states-autocomplete' }}
           ref="autocomplete"
           value={this.state.value}
           items={this.state.unitedStates}
