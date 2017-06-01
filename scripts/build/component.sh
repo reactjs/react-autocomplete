@@ -8,12 +8,10 @@ browserify ../lib/Autocomplete.js \
     --transform babelify \
     --external react \
     --external react-dom \
-    --external prop-types \
     --debug \
   | youemdee ReactAutocomplete \
     --dependency react:React \
     --dependency react-dom:ReactDOM \
-    --dependency prop-types:PropTypes \
   | exorcist react-autocomplete.js.map \
   > react-autocomplete.js
 uglifyjs react-autocomplete.js \
