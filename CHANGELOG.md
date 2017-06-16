@@ -4,6 +4,10 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.5.8] - 2017-06-16
+### Fixed
+- Ensure top match is highlighted even if `props.items` arrive out of order (async) (#249)
+
 ## [1.5.7] - 2017-06-14
 ### Changed
 - Improve auto highlight logic, reduces render count and fixes some edge cases
@@ -189,7 +193,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.7...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.8...HEAD
+[1.5.8]: https://github.com/reactjs/react-autocomplete/compare/v1.5.7...v1.5.8
 [1.5.7]: https://github.com/reactjs/react-autocomplete/compare/v1.5.6...v1.5.7
 [1.5.6]: https://github.com/reactjs/react-autocomplete/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/reactjs/react-autocomplete/compare/v1.5.4...v1.5.5
