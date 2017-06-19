@@ -44,7 +44,6 @@ class App extends React.Component {
             <div
               style={isHighlighted ? styles.highlightedItem : styles.item}
               key={item.abbr}
-              id={item.abbr}
             >{item.name}</div>
           )}
         />
