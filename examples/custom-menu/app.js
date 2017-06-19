@@ -1,7 +1,7 @@
 import React from 'react'
 import DOM from 'react-dom'
 import Autocomplete from '../../lib/index'
-import { getStates, styles, fakeRequest } from '../../lib/utils'
+import { styles, fakeRequest } from '../../lib/utils'
 
 class App extends React.Component {
 
@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       value: '',
-      unitedStates: getStates(),
+      unitedStates: [],
       loading: false
     }
     this.renderItems = this.renderItems.bind(this)
