@@ -50,17 +50,17 @@ class App extends Component {
             </div>
           )}
           renderMenu={children =>
-              <div style={{ ...styles.menu, position: 'absolute', width: '100%' }}>
-                  {children}
-              </div>
+            <div style={{ ...styles.menu, position: 'absolute', width: '100%' }}>
+              {children}
+            </div>
           }
           wrapperStyle={{ position: 'relative', display: 'inline-block' }}
           onMenuVisibilityChange={isOpen => this.setState({ isOpen })}
           open={open}
         />
         <button
-            onClick={() => this.setState({ isOpen: !state.isOpen })}
-            disabled={state.forceOpen}
+          onClick={() => this.setState({ isOpen: !state.isOpen })}
+          disabled={state.forceOpen}
         >
           {open ? 'Close menu' : 'Open menu'}
         </button>
