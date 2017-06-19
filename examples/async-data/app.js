@@ -8,7 +8,6 @@ class App extends React.Component {
   state = {
     value: '',
     unitedStates: getStates(),
-    loading: false
   }
 
   render() {
@@ -34,9 +33,9 @@ class App extends React.Component {
             // this.setState({ unitedStates: getStates() })
           }}
           onChange={(event, value) => {
-            this.setState({ value, loading: true })
+            this.setState({ value })
             fakeRequest(value, (items) => {
-              this.setState({ unitedStates: items, loading: false })
+              this.setState({ unitedStates: items })
             })
           }}
           renderItem={(item, isHighlighted) => (
