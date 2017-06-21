@@ -93,7 +93,7 @@ Default value:
 
 Styles that are applied to the dropdown menu in the default `renderMenu`
 implementation. If you override `renderMenu` and you want to use
-`menuStyles` you must manually apply them (`this.props.menuStyles`).
+`menuStyle` you must manually apply them (`this.props.menuStyle`).
 
 #### `onChange: Function` (optional)
 Default value: `function() {}`
