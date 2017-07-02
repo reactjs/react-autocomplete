@@ -18,17 +18,17 @@
     "example": "examples"
   },
   "scripts": {
-    "generate-readme": "scripty",
-    "gh-pages": "scripty",
-    "release": "scripty",
-    "build": "scripty",
-    "build:component": "scripty",
-    "build:examples": "scripty",
-    "test": "scripty",
-    "test:lint": "scripty",
-    "test:jest": "scripty",
-    "coverage": "scripty",
-    "start": "SCRIPTY_PARALLEL=true scripty"
+    "generate-readme": "node bin/generate-readme.js",
+    "gh-pages": "bin/gh-pages.sh",
+    "release": "bin/release.sh",
+    "build": "npm run build:component && npm run build:examples",
+    "build:component": "bin/build-component.sh",
+    "build:examples": "bin/build-examples.sh",
+    "test": "npm run test:lint && npm run test:jest",
+    "test:lint": "eslint lib examples --ignore-pattern=examples/__build__/**",
+    "test:jest": "jest",
+    "coverage": "jest --coverage",
+    "start": "bin/start.sh"
   },
   "authors": [
     "Ryan Florence <rpflorence@gmail.com>"
@@ -45,6 +45,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.3.0",
     "browserify-hmr": "^0.3.5",
+    "concurrently": "^3.5.0",
     "enzyme": "^2.8.2",
     "eslint": "^2.13.1",
     "eslint-config-rackt": "^1.1.1",
@@ -58,7 +59,6 @@
     "react-docgen": "^2.15.0",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
-    "scripty": "^1.7.1",
     "st": "^1.2.0",
     "uglify-js": "^2.7.5",
     "watchify": "^3.8.0",
