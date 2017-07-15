@@ -12,6 +12,7 @@ class App extends React.Component {
       unitedStates: [],
       loading: false
     }
+    this.requestTimer = null
     this.renderItems = this.renderItems.bind(this)
   }
 
@@ -33,7 +34,8 @@ class App extends React.Component {
           onSelect={(value, state) => this.setState({ value, unitedStates: [state] }) }
           onChange={(event, value) => {
             this.setState({ value, loading: true })
-            fakeRequest(value, (items) => {
+            clearTimeout(this.requestTimer)
+            this.requestTimer = fakeRequest(value, (items) => {
               this.setState({ unitedStates: items, loading: false })
             })
           }}

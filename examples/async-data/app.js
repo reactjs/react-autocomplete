@@ -10,6 +10,8 @@ class App extends React.Component {
     unitedStates: getStates(),
   }
 
+  requestTimer = null
+
   render() {
     return (
       <div>
@@ -34,7 +36,8 @@ class App extends React.Component {
           }}
           onChange={(event, value) => {
             this.setState({ value })
-            fakeRequest(value, (items) => {
+            clearTimeout(this.requestTimer)
+            this.requestTimer = fakeRequest(value, (items) => {
               this.setState({ unitedStates: items })
             })
           }}
