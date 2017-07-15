@@ -33,7 +33,7 @@ class App extends React.Component {
           getItemValue={(item) => item.name}
           onSelect={(value, state) => this.setState({ value, unitedStates: [state] }) }
           onChange={(event, value) => {
-            this.setState({ value, loading: true })
+            this.setState({ value, loading: true, unitedStates: [] })
             clearTimeout(this.requestTimer)
             this.requestTimer = fakeRequest(value, (items) => {
               this.setState({ unitedStates: items, loading: false })
