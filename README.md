@@ -134,9 +134,10 @@ function(items, value, style) {
 Arguments: `items: Array<Any>, value: String, styles: Object`
 
 Invoked to generate the render tree for the dropdown menu. Ensure the
-returned tree includes `items` or else no items will be rendered.
-`styles` will contain { top, left, minWidth } which are the coordinates
-of the top-left corner and the width of the dropdown menu.
+returned tree includes every entry in `items` or else the highlight order
+and keyboard navigation logic will break. `styles` will contain
+{ top, left, minWidth } which are the coordinates of the top-left corner
+and the width of the dropdown menu.
 
 #### `shouldItemRender: Function` (optional)
 Arguments: `item: Any, value: String`
