@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete.props.renderInput should be invoked in \`render\` to create the <input> element 1`] = `
+Object {
+  "aria-autocomplete": "list",
+  "aria-expanded": false,
+  "autoComplete": "off",
+  "foo": "bar",
+  "onBlur": [Function],
+  "onChange": [Function],
+  "onClick": [Function],
+  "onFocus": [Function],
+  "onKeyDown": [Function],
+  "ref": [Function],
+  "role": "combobox",
+  "value": "pants",
+}
+`;
+
+exports[`Autocomplete.props.renderInput should be invoked in \`render\` to create the <input> element 2`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
+>
+  <div>
+    <input
+      aria-autocomplete="list"
+      aria-expanded={false}
+      autoComplete="on"
+      foo="bar"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="combobox"
+      value="pants"
+    />
+  </div>
+</div>
+`;
