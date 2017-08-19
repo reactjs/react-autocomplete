@@ -71,12 +71,13 @@ menu.
 #### `inputProps: Object` (optional)
 Default value: `{}`
 
-Props that are applied to the `<input />` element rendered by
-`Autocomplete`. Any properties supported by `HTMLInputElement` can be
-specified, apart from the following which are set by `Autocomplete`:
-value, autoComplete, role, aria-autocomplete
-`inputProps` is commonly used for (but not limited to) placeholder,
-event handlers (onFocus, onBlur, etc.), autoFocus, etc.
+Props passed to `props.renderInput`. By default these props will be
+applied to the `<input />` element rendered by `Autocomplete`, unless you
+have specified a custom value for `props.renderInput`. Any properties
+supported by `HTMLInputElement` can be specified, apart from the
+following which are set by `Autocomplete`: value, autoComplete, role,
+aria-autocomplete. `inputProps` is commonly used for (but not limited to)
+placeholder, event handlers (onFocus, onBlur, etc.), autoFocus, etc..
 
 #### `menuStyle: Object` (optional)
 Default value:
@@ -124,6 +125,22 @@ Used to override the internal logic which displays/hides the dropdown
 menu. This is useful if you want to force a certain state based on your
 UX/business logic. Use it together with `onMenuVisibilityChange` for
 fine-grained control over the dropdown menu dynamics.
+
+#### `renderInput: Function` (optional)
+Default value:
+```jsx
+function(props) {
+  return <input {...props} />
+}
+```
+
+Arguments: `props: Object`
+
+Invoked to generate the input element. The `props` argument is the result
+of merging `props.inputProps` with a selection of props that are required
+both for functionality and accessibility. At the very least you need to
+apply `props.ref` and all `props.on<event>` event handlers. Failing to do
+this will cause `Autocomplete` to behave unexpectedly.
 
 #### `renderMenu: Function` (optional)
 Default value:
