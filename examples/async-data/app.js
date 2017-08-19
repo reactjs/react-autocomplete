@@ -1,7 +1,7 @@
 import React from 'react'
 import DOM from 'react-dom'
 import Autocomplete from '../../lib/index'
-import { getStates, styles, fakeRequest } from '../../lib/utils'
+import { getStates, fakeRequest } from '../../lib/utils'
 
 class App extends React.Component {
 
@@ -25,6 +25,7 @@ class App extends React.Component {
         <label htmlFor="states-autocomplete">Choose a state from the US</label>
         <Autocomplete
           inputProps={{ id: 'states-autocomplete' }}
+          wrapperStyle={{ position: 'relative', display: 'inline-block' }}
           value={this.state.value}
           items={this.state.unitedStates}
           getItemValue={(item) => item.name}
@@ -41,9 +42,14 @@ class App extends React.Component {
               this.setState({ unitedStates: items })
             })
           }}
+          renderMenu={children => (
+            <div className="menu">
+              {children}
+            </div>
+          )}
           renderItem={(item, isHighlighted) => (
             <div
-              style={isHighlighted ? styles.highlightedItem : styles.item}
+              className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
               key={item.abbr}
             >{item.name}</div>
           )}

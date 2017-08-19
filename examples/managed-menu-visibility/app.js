@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DOM from 'react-dom'
 import Autocomplete from '../../lib/index'
-import { getStates, matchStateToTerm, styles } from '../../lib/utils'
+import { getStates, matchStateToTerm } from '../../lib/utils'
 
 const STATES = getStates()
 
@@ -43,14 +43,14 @@ class App extends Component {
           onChange={e => this.setState({ value: e.target.value })}
           renderItem={(item, isHighlighted) => (
             <div
-              style={isHighlighted ? styles.highlightedItem : styles.item}
+              className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
               key={item.abbr}
             >
               {item.name}
             </div>
           )}
           renderMenu={children =>
-            <div style={{ ...styles.menu, position: 'absolute', width: '100%' }}>
+            <div className="menu">
               {children}
             </div>
           }
