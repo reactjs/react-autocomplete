@@ -21,7 +21,7 @@ Accessible, extensible, Autocomplete for React.js.
 />
 ```
 
-[Examples](https://reactcommunity.org/react-autocomplete/)
+Check out [more examples](https://reactcommunity.org/react-autocomplete/) and get stuck right in with the [online editor](http://jsbin.com/mipesawapi/edit?js,output).
 
 ## Install
 
