@@ -4,6 +4,14 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.7.9] - 2017-08-20
+### Added
+- `props.selectOnBlur` to select any highlighted item on blur (#251)
+
+## [1.6.0] - 2017-08-19
+### Added
+- `props.renderInput` to allow custom `<input>` components (#247)
+
 ## [1.5.10] - 2017-07-20
 ### Fixed
 - Make setState updaters compatible with preact-compat (#258)
@@ -201,7 +209,9 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.5.10...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/reactjs/react-autocomplete/compare/v1.6.0...v1.7.0
+[1.6.0]: https://github.com/reactjs/react-autocomplete/compare/v1.5.10...v1.6.0
 [1.5.10]: https://github.com/reactjs/react-autocomplete/compare/v1.5.9...v1.5.10
 [1.5.9]: https://github.com/reactjs/react-autocomplete/compare/v1.5.8...v1.5.9
 [1.5.8]: https://github.com/reactjs/react-autocomplete/compare/v1.5.7...v1.5.8
