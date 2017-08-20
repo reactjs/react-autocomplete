@@ -4,6 +4,10 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.7.1] - 2017-08-20
+### Fixed
+- Do not select an item on Enter keypress when keyCode is not 13 (#201)
+
 ## [1.7.0] - 2017-08-20
 ### Added
 - `props.selectOnBlur` to select any highlighted item on blur (#251)
@@ -209,7 +213,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.7.1...HEAD
+[1.7.1]: https://github.com/reactjs/react-autocomplete/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/reactjs/react-autocomplete/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/reactjs/react-autocomplete/compare/v1.5.10...v1.6.0
 [1.5.10]: https://github.com/reactjs/react-autocomplete/compare/v1.5.9...v1.5.10
