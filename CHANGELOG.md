@@ -4,7 +4,7 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
-## [1.7.9] - 2017-08-20
+## [1.7.0] - 2017-08-20
 ### Added
 - `props.selectOnBlur` to select any highlighted item on blur (#251)
 
