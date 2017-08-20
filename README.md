@@ -39,8 +39,8 @@ yarn add react-autocomplete
 
 ### AMD/UMD
 
-* Development: [https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.js)
-* Production: [https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.min.js)
+* Development: [https://unpkg.com/react-autocomplete@1.6.0/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@1.6.0/dist/react-autocomplete.js)
+* Production: [https://unpkg.com/react-autocomplete@1.6.0/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@1.6.0/dist/react-autocomplete.min.js)
 
 ## API
 
@@ -157,6 +157,12 @@ returned tree includes every entry in `items` or else the highlight order
 and keyboard navigation logic will break. `styles` will contain
 { top, left, minWidth } which are the coordinates of the top-left corner
 and the width of the dropdown menu.
+
+#### `selectOnBlur: Boolean` (optional)
+Default value: `false`
+
+Whether or not to automatically select the highlighted item when the
+`<input>` loses focus.
 
 #### `shouldItemRender: Function` (optional)
 Arguments: `item: Any, value: String`
