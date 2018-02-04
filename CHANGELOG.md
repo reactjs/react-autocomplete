@@ -4,6 +4,10 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.7.3] - 2018-02-04
+### Fixed
+- Release focus-lock when user uses Enter to close menu (thanks to @Fralleee for discovering this edge case) (#304)
+
 ## [1.7.2] - 2017-10-8
 ### Changed
 - Include React v16 in peer-dependency version range (#280)
@@ -217,7 +221,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.7.2...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.7.3...HEAD
+[1.7.3]: https://github.com/reactjs/react-autocomplete/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/reactjs/react-autocomplete/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/reactjs/react-autocomplete/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/reactjs/react-autocomplete/compare/v1.6.0...v1.7.0
