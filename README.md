@@ -79,6 +79,15 @@ following which are set by `Autocomplete`: value, autoComplete, role,
 aria-autocomplete. `inputProps` is commonly used for (but not limited to)
 placeholder, event handlers (onFocus, onBlur, etc.), autoFocus, etc..
 
+#### `isItemSelectable: Function` (optional)
+Default value: `function() { return true }`
+
+Arguments: `item: Any`
+
+Invoked when attempting to select an item. The return value is used to
+determine whether the item should be selectable or not.
+By default all items are selectable.
+
 #### `menuStyle: Object` (optional)
 Default value:
 ```jsx
