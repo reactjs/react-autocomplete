@@ -4,6 +4,11 @@ We try to follow [http://keepachangelog.com/](http://keepachangelog.com/) recomm
 ## [Unreleased]
 _(add items here for easier creation of next log entry)_
 
+## [1.8.1] - 2018-02-11
+### Fixed
+- Prevent menu from closing prematurely on mobile (#308)
+- Fix for up-arrow not working after `props.isItemSelectable` was added (#315)
+
 ## [1.8.0] - 2018-02-04
 ### Added
 - `props.isItemSelectable` which allows rendering items that will not function as selectable items, but instead as static information/decoration elements such as headers (thanks to @rssteffey with help from @rmcauley) (#241)
@@ -225,7 +230,8 @@ v0.1.0 - Wed, 12 Aug 2015 19:22:26 GMT
 
 -
 
-[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/reactjs/react-autocomplete/compare/v1.8.1...HEAD
+[1.8.1]: https://github.com/reactjs/react-autocomplete/compare/v1.8.0...v1.8.1
 [1.8.0]: https://github.com/reactjs/react-autocomplete/compare/v1.7.3...v1.8.0
 [1.7.3]: https://github.com/reactjs/react-autocomplete/compare/v1.7.2...v1.7.3
 [1.7.2]: https://github.com/reactjs/react-autocomplete/compare/v1.7.1...v1.7.2
